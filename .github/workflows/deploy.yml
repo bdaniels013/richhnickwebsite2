@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -22,8 +22,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      # Build Tailwind from src/input.css to assets/tailwind.css
-      - run: npx tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify --content ./index.html
+      - name: Prepare folders
+        run: mkdir -p assets src
+      - name: Build Tailwind CSS
+        run: npx tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify --content ./index.html
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
