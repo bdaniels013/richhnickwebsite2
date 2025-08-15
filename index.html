@@ -530,8 +530,7 @@
           `LOCATION:${venue}, ${city}`,
           'END:VEVENT',
           'END:VCALENDAR'
-        ].join('
-');
+        ].join('\n');
         return 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
       }catch(e){ return '#'; }
     }
