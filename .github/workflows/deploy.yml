@@ -22,10 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Prepare folders
+      - name: Ensure folders exist
         run: mkdir -p assets src
       - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify --content ./index.html
+        run: npx --yes tailwindcss@latest -i ./src/input.css -o ./assets/tailwind.css --minify --content ./index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
