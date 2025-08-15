@@ -1,29 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="richh-2040">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Richh Nick — Official HQ</title>
   <meta name="description" content="Richh Nick — Artist, Mogul, Visionary. Music, events, artists, merch, and movement — all in one place." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Richh Nick — Official HQ" />
+  <meta property="og:description" content="Music • Events • Artists • Merch — Your front row seat to the movement." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=1200&auto=format&fit=crop" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --gold: #C9A227; --goldSoft:#E5C766; --black:#0a0a0a; }
-    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    .gold-grad{ background-image: linear-gradient(135deg, #E8D38E, #C9A227 60%, #7A6414); }
-    .gold-text{ background: linear-gradient(90deg,#E5C766,#7A6414); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .card{ position:relative; border-radius: 1rem; padding:1.5px; background: linear-gradient(135deg, #E8D38E, #C9A227 60%, #7A6414); }
-    .card > .inner{ border-radius: 1rem; background:#0a0a0a; padding:1.5rem; height:100%; }
+    /* ======= 2040 Design System ======= */
+    :root{
+      --gold: #C9A227; /* deep gold */
+      --goldSoft:#E5C766;
+      --goldDark:#7A6414;
+      --black:#0a0a0a;
+      --ink:#0f1115;
+      --glass:#101318cc; /* translucent */
+      --ring: 0 0 0 1px rgba(255,255,255,.08) inset;
+    }
+    html,body{ height:100%; }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#000; }
+
+    /* Aurora / Nebula background */
+    .bg-aurora{ position:fixed; inset:0; z-index:-3; pointer-events:none; background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(229,199,102,.20), transparent 60%),
+      radial-gradient(900px 450px at 90% -10%, rgba(122,100,20,.18), transparent 60%),
+      radial-gradient(900px 450px at 50% 120%, rgba(201,162,39,.20), transparent 60%),
+      #050507;
+      filter:saturate(1.1);
+    }
+    /* Subtle scanlines + noise for texture */
+    .bg-noise{ position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.07; background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 1px, transparent 1px, transparent 3px); mix-blend: overlay; }
+
+    /* Cyber grid overlay */
+    .bg-grid{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.08; background-image: linear-gradient(to right, rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.15) 1px, transparent 1px); background-size: 60px 60px; }
+
+    /* Gold gradient utilities */
+    .gold-grad{ background-image: linear-gradient(135deg, #E8D38E, var(--gold) 60%, var(--goldDark)); }
+    .gold-text{ background: linear-gradient(90deg,var(--goldSoft),var(--goldDark)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+    /* Glass card with animated border */
+    .card{ position:relative; border-radius: 1.1rem; padding:1.5px; background: linear-gradient(135deg, rgba(232,211,142,.6), rgba(201,162,39,.6) 60%, rgba(122,100,20,.6)); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+    .card > .inner{ border-radius: 1rem; background: var(--glass); backdrop-filter: blur(14px); padding:1.25rem; height:100%; box-shadow: var(--ring); }
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(20px) scale(.98); transition: all .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.show{ opacity:1; transform: translateY(0) scale(1); }
+
+    /* 3D tilt */
+    .tilt{ transform-style: preserve-3d; will-change: transform; }
+    .tilt .depth{ transform: translateZ(30px); }
+
+    /* Magnetic buttons */
+    .mag{ transition: transform .15s ease; will-change: transform; }
+
+    /* Progress bar */
+    #progress{ position: fixed; top:0; left:0; height:3px; background: linear-gradient(90deg, var(--goldSoft), var(--goldDark)); z-index:60; box-shadow: 0 0 20px rgba(229,199,102,.45); }
+
+    /* Command palette */
+    .cmdk{ position: fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(4px); z-index:50; display:none; align-items:center; justify-content:center; }
+    .cmdk.open{ display:flex; }
+    .cmdk-panel{ width:min(750px, 92vw); border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+
+    /* Floating orbs */
+    .orb{ position:absolute; filter: blur(40px); opacity:.35; mix-blend: screen; }
+
+    /* Cursor ring */
+    .ring{ position: fixed; pointer-events:none; z-index:40; width:24px; height:24px; border-radius:9999px; box-shadow:0 0 0 2px rgba(255,255,255,.25), inset 0 0 12px rgba(229,199,102,.55); transform: translate(-50%, -50%); transition: width .2s, height .2s, opacity .2s; }
+
+    /* Equalizer bars */
+    .eq{ display:flex; gap:3px; align-items:flex-end; height:14px; }
+    .eq span{ width:3px; background:linear-gradient(180deg,var(--goldSoft),var(--goldDark)); animation: bounce 1s infinite ease-in-out; }
+    .eq span:nth-child(2){ animation-delay:.15s }
+    .eq span:nth-child(3){ animation-delay:.3s }
+    @keyframes bounce{ 0%,100%{ height:20% } 50%{ height:100% } }
+
+    /* Section dividers */
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); }
+
+    /* Scroll-to-top */
+    #totop{ position:fixed; right:18px; bottom:20px; z-index:30; opacity:0; transform: translateY(10px); transition: all .3s; }
+    #totop.show{ opacity:1; transform: translateY(0); }
+
+    /* Hero video fallback */
+    .hero-video{ position:absolute; inset:0; object-fit:cover; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
   </style>
 </head>
 <body class="bg-black text-white selection:bg-yellow-300 selection:text-black">
+  <!-- Background systems -->
+  <div class="bg-aurora"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-grid"></div>
+  <canvas id="constellation" class="fixed inset-0 -z-[1] opacity-30"></canvas>
+  <div id="progress"></div>
+  <div class="ring" id="ring"></div>
+
+  <!-- Floating ambience orbs -->
+  <div class="orb w-72 h-72 gold-grad rounded-full -z-[1]" style="top:10%; left:-4%"></div>
+  <div class="orb w-96 h-96 gold-grad rounded-full -z-[1]" style="bottom:-10%; right:-6%"></div>
+
   <!-- Top Nav -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
+  <header class="sticky top-0 z-40 bg-black/40 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded-xl gold-grad"></div>
+        <div class="h-9 w-9 rounded-xl gold-grad shadow-lg"></div>
         <div class="font-extrabold tracking-wide">Richh Nick <span class="text-xs text-white/60 ml-2">Official HQ</span></div>
       </div>
       <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
@@ -34,6 +122,7 @@
         <a href="#members" class="hover:text-white">Members</a>
         <a href="#merch" class="hover:text-white">Merch</a>
         <a href="#booking" class="hover:text-white">Booking</a>
+        <button id="cmdkBtn" class="ml-2 hidden lg:inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 text-xs text-white/70 hover:text-white">⌘K Quick‑Jump</button>
       </nav>
       <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-white/10">☰</button>
     </div>
@@ -46,35 +135,37 @@
         <a href="#members" class="rounded-lg bg-white/5 px-3 py-2">Members</a>
         <a href="#merch" class="rounded-lg bg-white/5 px-3 py-2">Merch</a>
         <a href="#booking" class="rounded-lg bg-white/5 px-3 py-2">Booking</a>
+        <button id="cmdkBtnM" class="rounded-lg bg-white/5 px-3 py-2 text-left">Quick‑Jump ⌘K</button>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="relative pt-12 pb-24">
-    <div class="absolute inset-0 -z-10">
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=2000&auto=format&fit=crop');"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
-    </div>
+  <section id="hero" class="relative pt-16 pb-28 overflow-hidden">
+    <video class="hero-video" autoplay muted playsinline loop poster="https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=2000&auto=format&fit=crop">
+      <source src="" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6">
+      <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6 reveal">
+        <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>Where Hustle Meets Legacy</span>
       </div>
-      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Richh Nick — Artist, Mogul, Visionary</h1>
-      <p class="mt-5 text-white/80 max-w-2xl">Music. Events. Artists. Merch. Game‑changing moves — all in one place. Tap in for unreleased drops, early tickets, and the blueprint behind the hustle.</p>
+      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight reveal"><span class="gold-text">Richh Nick</span> — Artist, Mogul, Visionary</h1>
+      <p class="mt-5 text-white/80 max-w-2xl reveal">Music. Events. Artists. Merch. Game‑changing moves — all in one place. Tap in for unreleased drops, early tickets, and the blueprint behind the hustle.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#music" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Listen Now</a>
-        <a href="#booking" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Book Me</a>
-        <a href="#members" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white/10 hover:bg-white/20">Join the Movement</a>
+        <a href="#music" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Listen Now</a>
+        <a href="#booking" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Book Me</a>
+        <a href="#members" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white/10 hover:bg-white/20">Join the Movement</a>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 bg-black">
+  <section id="about" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-3 gap-10 items-center">
-        <div class="md:col-span-2">
+        <div class="md:col-span-2 reveal">
           <h2 class="text-3xl md:text-4xl font-extrabold mb-4">About</h2>
           <p class="text-white/80 leading-relaxed">Built from grit and vision. Richh Nick is more than an artist — he’s a builder, a host, and an operator. From SXSW stages and viral moments to leadership at Authentic Empire, the mission stays the same: elevate the sound, empower the culture, and turn hustle into legacy.</p>
           <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-white/80 list-disc pl-5">
@@ -84,7 +175,7 @@
             <li>Brands, ventures & community</li>
           </ul>
         </div>
-        <div class="card md:col-span-1"><div class="inner">
+        <div class="card md:col-span-1 tilt reveal"><div class="inner">
           <h3 class="text-xl font-bold mb-2">Taglines</h3>
           <ul class="text-white/80 space-y-2 list-disc pl-5">
             <li>Where Hustle Meets Legacy</li>
@@ -94,31 +185,32 @@
         </div></div>
       </div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Music & Media -->
-  <section id="music" class="py-20 bg-[#0a0a0a]">
+  <section id="music" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Music & Media</h2>
-        <span class="text-white/60 text-sm">Tune in & tap in</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Music & Media</h2>
+        <span class="text-white/60 text-sm reveal">Tune in & tap in</span>
       </div>
       <div class="grid lg:grid-cols-2 gap-10">
-        <div class="card"><div class="inner">
+        <div class="card reveal tilt"><div class="inner">
           <h3 class="text-lg font-semibold mb-3">Spotify</h3>
           <div class="aspect-video rounded-xl overflow-hidden">
             <!-- TODO: Replace src with your Spotify artist/playlist embed link -->
             <iframe title="Spotify" class="w-full h-full" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" src="https://open.spotify.com/embed/artist/3jOstUTkEu2JkjvRdBA5Gu?utm_source=generator"></iframe>
           </div>
         </div></div>
-        <div class="card"><div class="inner">
+        <div class="card reveal tilt"><div class="inner">
           <h3 class="text-lg font-semibold mb-3">Apple Music</h3>
           <div class="aspect-video rounded-xl overflow-hidden">
             <!-- TODO: Replace src with your Apple Music album/artist embed link -->
             <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%; overflow:hidden; background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/after-hours/1499378108" title="Apple Music"></iframe>
           </div>
         </div></div>
-        <div class="card lg:col-span-2"><div class="inner">
+        <div class="card lg:col-span-2 reveal tilt"><div class="inner">
           <h3 class="text-lg font-semibold mb-3">Latest Video</h3>
           <div class="aspect-video rounded-xl overflow-hidden">
             <!-- TODO: Replace video id in URL with your latest video id -->
@@ -127,50 +219,52 @@
         </div></div>
       </div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Events -->
-  <section id="events" class="py-20 bg-black">
+  <section id="events" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Events</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Events</h2>
       </div>
       <div class="grid md:grid-cols-2 gap-6">
         <!-- Example Event Card 1: replace values -->
-        <div class="card"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
+        <div class="card reveal tilt"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="depth">
             <h3 class="text-xl font-bold">Yacht Party — Biloxi Sound</h3>
             <p class="text-white/70 mt-1"><span class="ev-date">2025-09-05</span> • <span class="ev-time">20:00</span> • Private Marina — Biloxi, MS</p>
           </div>
           <div class="flex gap-2">
-            <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
-            <a class="add-cal inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="Yacht Party — Biloxi Sound" data-date="2025-09-05" data-time="20:00" data-venue="Private Marina" data-city="Biloxi, MS" href="#">Add to Calendar</a>
+            <a href="#" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
+            <a class="add-cal mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="Yacht Party — Biloxi Sound" data-date="2025-09-05" data-time="20:00" data-venue="Private Marina" data-city="Biloxi, MS" href="#">Add to Calendar</a>
           </div>
         </div></div>
         <!-- Example Event Card 2 -->
-        <div class="card"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
+        <div class="card reveal tilt"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="depth">
             <h3 class="text-xl font-bold">SXSW Takeover — Hosted by Richh Nick</h3>
             <p class="text-white/70 mt-1"><span class="ev-date">2026-03-15</span> • <span class="ev-time">21:00</span> • 6th Street — Austin, TX</p>
           </div>
           <div class="flex gap-2">
-            <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
-            <a class="add-cal inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="SXSW Takeover — Hosted by Richh Nick" data-date="2026-03-15" data-time="21:00" data-venue="6th Street" data-city="Austin, TX" href="#">Add to Calendar</a>
+            <a href="#" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
+            <a class="add-cal mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="SXSW Takeover — Hosted by Richh Nick" data-date="2026-03-15" data-time="21:00" data-venue="6th Street" data-city="Austin, TX" href="#">Add to Calendar</a>
           </div>
         </div></div>
       </div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Artists -->
-  <section id="artists" class="py-20 bg-[#0a0a0a]">
+  <section id="artists" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Artist Management</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Artist Management</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <!-- Artist 1 -->
-        <div class="card"><div class="inner space-y-4">
+        <div class="card reveal tilt"><div class="inner space-y-4">
           <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200&auto=format&fit=crop" alt="Padd X" class="w-full h-48 object-cover rounded-xl" />
           <div>
             <h3 class="text-xl font-bold">Padd X</h3>
@@ -183,7 +277,7 @@
           </div>
         </div></div>
         <!-- Artist 2 -->
-        <div class="card"><div class="inner space-y-4">
+        <div class="card reveal tilt"><div class="inner space-y-4">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop" alt="100K Loo" class="w-full h-48 object-cover rounded-xl" />
           <div>
             <h3 class="text-xl font-bold">100K Loo</h3>
@@ -196,7 +290,7 @@
           </div>
         </div></div>
         <!-- Artist 3 -->
-        <div class="card"><div class="inner space-y-4">
+        <div class="card reveal tilt"><div class="inner space-y-4">
           <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="BoldBoy" class="w-full h-48 object-cover rounded-xl" />
           <div>
             <h3 class="text-xl font-bold">BoldBoy</h3>
@@ -210,7 +304,7 @@
         </div></div>
       </div>
 
-      <div class="card mt-10"><div class="inner grid lg:grid-cols-2 gap-6 items-center">
+      <div class="card mt-10 reveal tilt"><div class="inner grid lg:grid-cols-2 gap-6 items-center">
         <div>
           <h3 class="text-2xl font-bold">Submit Your Music</h3>
           <p class="text-white/70 mt-2">Serious talent only. Drop your details — if it’s undeniable, we’ll be in touch.</p>
@@ -233,12 +327,13 @@
         </form>
       </div></div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Members Only -->
-  <section id="members" class="py-20 bg-black">
+  <section id="members" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 items-center">
-      <div>
+      <div class="reveal">
         <h2 class="text-3xl md:text-4xl font-extrabold">Members Only</h2>
         <p class="text-white/80 mt-3 max-w-xl">Unlock unreleased music, first‑access tickets, private livestreams, and drops. Join the inner circle.</p>
         <ul class="mt-6 space-y-2 text-white/80 list-disc pl-5">
@@ -247,7 +342,7 @@
           <li>Member‑only merch drops</li>
         </ul>
       </div>
-      <div class="card"><div class="inner">
+      <div class="card reveal tilt"><div class="inner">
         <form class="space-y-4" action="https://formspree.io/f/your-id" method="POST">
           <!-- TODO: Replace with your email/SMS provider; Formspree free tier works to start. -->
           <h3 class="text-xl font-bold">Get Your Key</h3>
@@ -258,39 +353,41 @@
         </form>
       </div></div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Merch -->
-  <section id="merch" class="py-20 bg-[#0a0a0a]">
+  <section id="merch" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Merch & Drops</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Merch & Drops</h2>
       </div>
-      <div class="card"><div class="inner flex flex-col md:flex-row md:items-center gap-6">
+      <div class="card reveal tilt"><div class="inner flex flex-col md:flex-row md:items-center gap-6">
         <div class="flex-1">
           <p class="text-white/80">Cop official gear and limited releases. Integrated with Shopify/Printful for smooth checkout.</p>
         </div>
         <!-- TODO: Replace # with your store URL -->
-        <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Visit the Store</a>
+        <a href="#" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Visit the Store</a>
       </div></div>
     </div>
+    <div class="divider mt-16"></div>
   </section>
 
   <!-- Booking -->
-  <section id="booking" class="py-20 bg-black">
+  <section id="booking" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
-      <div>
+      <div class="reveal">
         <h2 class="text-3xl md:text-4xl font-extrabold">Contact / Booking</h2>
-        <p class="text-white/80 mt-3 max-w-xl">For shows, features, hosting or speaking: tap the form or email <span class="font-semibold">richhnick3@gmail.com</span>.</p>
+        <p class="text-white/80 mt-3 max-w-xl">For shows, features, hosting or speaking: tap the form or email <button class="underline hover:no-underline" id="copyEmail" data-email="richhnick3@gmail.com">richhnick3@gmail.com</button>.</p>
         <div class="mt-6 flex flex-wrap gap-3 text-sm">
-          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="mailto:richhnick3@gmail.com">richhnick3@gmail.com</a>
+          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="mailto:richhnick3@gmail.com">Email</a>
           <!-- TODO: Replace with your real socials -->
           <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">Instagram</a>
           <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">X</a>
           <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">YouTube</a>
         </div>
       </div>
-      <div class="card"><div class="inner">
+      <div class="card reveal tilt"><div class="inner">
         <form class="space-y-3" action="https://formspree.io/f/your-id" method="POST">
           <!-- TODO: Replace action with your provider endpoint -->
           <div class="grid sm:grid-cols-2 gap-3">
@@ -313,7 +410,7 @@
           </div>
           <textarea name="details" rows="4" placeholder="Event details, links, notes" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"></textarea>
           <div class="flex justify-end">
-            <button class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black">Submit Inquiry</button>
+            <button class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black">Submit Inquiry</button>
           </div>
         </form>
       </div></div>
@@ -321,7 +418,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white border-t border-white/10">
+  <footer class="bg-black/60 backdrop-blur border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <div>
         <div class="text-lg font-extrabold">Richh Nick</div>
@@ -339,54 +436,121 @@
     </div>
   </footer>
 
+  <button id="totop" title="Back to top" class="mag inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur border border-white/10">↑ Top</button>
+
+  <!-- Command palette -->
+  <div id="cmdk" class="cmdk" aria-hidden="true">
+    <div class="card cmdk-panel"><div class="inner">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-white/70 text-sm">Quick‑Jump</span>
+        <span class="ml-auto text-xs text-white/40">Press Esc to close</span>
+      </div>
+      <input id="cmdkInput" placeholder="Type: music, events, artists, merch, booking…" class="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-sm" />
+      <div class="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
+        <a href="#music" class="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15">Listen Now</a>
+        <a href="#booking" class="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15">Book Me</a>
+        <a href="#members" class="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15">Join the Movement</a>
+        <button id="copyEmail2" data-email="richhnick3@gmail.com" class="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-left">Copy Email</button>
+      </div>
+    </div></div>
+  </div>
+
   <script>
+    // ===== Core helpers =====
+    const $ = (q, ctx=document) => ctx.querySelector(q);
+    const $$ = (q, ctx=document) => Array.from(ctx.querySelectorAll(q));
+
     // Mobile menu toggle
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      const m = document.getElementById('mobileMenu');
-      m.classList.toggle('hidden');
-    });
+    $('#menuBtn').addEventListener('click', () => $('#mobileMenu').classList.toggle('hidden'));
 
     // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    $('#year').textContent = new Date().getFullYear();
 
-    // "Add to Calendar" (ICS data URI) for each event link with .add-cal
-    function toICSDate(dt){
-      // dt is Date
-      return dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+    // Scroll progress bar
+    const progress = $('#progress');
+    const onScroll = () => { const p = (window.scrollY)/(document.body.scrollHeight - innerHeight); progress.style.width = (p*100)+'%'; }; onScroll(); window.addEventListener('scroll', onScroll);
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); })
+    }, { threshold:.12 });
+    $$('.reveal').forEach(el=> io.observe(el));
+
+    // 3D tilt
+    $$('.tilt').forEach(card=>{
+      let rAF; card.addEventListener('mousemove', (e)=>{
+        cancelAnimationFrame(rAF); rAF = requestAnimationFrame(()=>{
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left)/r.width - .5; const y = (e.clientY - r.top)/r.height - .5;
+          card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${ -y*10}deg)`;
+        });
+      });
+      card.addEventListener('mouseleave', ()=>{ card.style.transform='perspective(900px) rotateY(0) rotateX(0)'; });
+    });
+
+    // Magnetic buttons
+    $$('.mag').forEach(btn=>{
+      const strength = 12; let anim;
+      btn.addEventListener('mousemove', (e)=>{
+        cancelAnimationFrame(anim); anim = requestAnimationFrame(()=>{
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width/2)/r.width; const y = (e.clientY - r.top - r.height/2)/r.height;
+          btn.style.transform = `translate(${x*strength}px, ${y*strength}px)`;
+        });
+      });
+      btn.addEventListener('mouseleave', ()=>{ btn.style.transform='translate(0,0)'; });
+    });
+
+    // Cursor ring
+    const ring = $('#ring');
+    document.addEventListener('mousemove', (e)=>{ ring.style.left=e.clientX+'px'; ring.style.top=e.clientY+'px'; });
+    document.addEventListener('mousedown', ()=>{ ring.style.width='14px'; ring.style.height='14px'; });
+    document.addEventListener('mouseup', ()=>{ ring.style.width='24px'; ring.style.height='24px'; });
+
+    // ICS timestamp helper without backslash-heavy regex
+    function toICSDate(d){
+      const iso = d.toISOString(); // 2025-08-15T12:34:56.789Z
+      const noMs = iso.split('.')[0] + 'Z';
+      return noMs.replace(/[-:]/g, '');
     }
-
     function buildICS({title, date, time, venue, city}){
       try{
         const start = new Date(`${date}T${time || '20:00'}:00`);
         const end = new Date(start.getTime() + 2*60*60*1000);
-        const ics = [
-          'BEGIN:VCALENDAR',
-          'VERSION:2.0',
-          'PRODID:-//RichhNick.org//EN',
-          'CALSCALE:GREGORIAN',
-          'METHOD:PUBLISH',
-          'BEGIN:VEVENT',
-          `DTSTART:${toICSDate(start)}`,
-          `DTEND:${toICSDate(end)}`,
-          `SUMMARY:${title}`,
-          `LOCATION:${venue}, ${city}`,
-          'END:VEVENT',
-          'END:VCALENDAR'
-        ].join('\n');
+        const ics = [ 'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//RichhNick.org//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',`DTSTART:${toICSDate(start)}`,`DTEND:${toICSDate(end)}`,`SUMMARY:${title}`,`LOCATION:${venue}, ${city}`,'END:VEVENT','END:VCALENDAR' ].join('
+');
         return 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
       }catch(e){ return '#'; }
     }
+    $$('.add-cal').forEach(a => { const data = { title: a.getAttribute('data-title'), date: a.getAttribute('data-date'), time: a.getAttribute('data-time'), venue: a.getAttribute('data-venue'), city: a.getAttribute('data-city') }; a.setAttribute('href', buildICS(data)); });
 
-    document.querySelectorAll('.add-cal').forEach(a => {
-      const data = {
-        title: a.getAttribute('data-title'),
-        date: a.getAttribute('data-date'),
-        time: a.getAttribute('data-time'),
-        venue: a.getAttribute('data-venue'),
-        city: a.getAttribute('data-city'),
-      };
-      a.setAttribute('href', buildICS(data));
-    });
+    // Command palette (⌘K / Ctrl+K)
+    const cmdk = $('#cmdk'); const input = $('#cmdkInput');
+    function openCmd(){ cmdk.classList.add('open'); cmdk.setAttribute('aria-hidden','false'); input.value=''; input.focus(); }
+    function closeCmd(){ cmdk.classList.remove('open'); cmdk.setAttribute('aria-hidden','true'); }
+    $('#cmdkBtn')?.addEventListener('click', openCmd); $('#cmdkBtnM')?.addEventListener('click', openCmd);
+    cmdk.addEventListener('click', (e)=>{ if(e.target===cmdk) closeCmd(); });
+    window.addEventListener('keydown', (e)=>{ if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); } if(e.key==='Escape') closeCmd(); });
+    input.addEventListener('keydown',(e)=>{ if(e.key==='Enter'){ const v=input.value.toLowerCase(); if(v.includes('music')) location='#music'; else if(v.includes('event')) location='#events'; else if(v.includes('artist')) location='#artists'; else if(v.includes('merch')) location='#merch'; else if(v.includes('book')) location='#booking'; closeCmd(); }});
+
+    // Copy email
+    function copyEmail(btn){ const email = btn.dataset.email; navigator.clipboard.writeText(email).then(()=>{ btn.textContent='Copied ✓'; setTimeout(()=>{ btn.textContent=email || 'Email'; }, 1200); }); }
+    $('#copyEmail')?.addEventListener('click', (e)=>{ e.preventDefault(); copyEmail(e.currentTarget); });
+    $('#copyEmail2')?.addEventListener('click', ()=> copyEmail($('#copyEmail2')));
+
+    // Scroll to top
+    const totop = $('#totop');
+    window.addEventListener('scroll', ()=>{ if(scrollY>400) totop.classList.add('show'); else totop.classList.remove('show'); });
+    totop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Constellation canvas (lightweight)
+    const canvas = $('#constellation'); const ctx = canvas.getContext('2d');
+    let w,h,points=[]; function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; points = Array.from({length: Math.min(120, Math.floor(w*h/16000))}, ()=>({ x: Math.random()*w, y: Math.random()*h, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35 })); }
+    function step(){ ctx.clearRect(0,0,w,h); for(const p of points){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; ctx.fillStyle='rgba(229,199,102,.8)'; ctx.fillRect(p.x, p.y, 1.5, 1.5); }
+      for(let i=0;i<points.length;i++){ for(let j=i+1;j<i+20 && j<points.length;j++){ const a=points[i], b=points[j]; const dx=a.x-b.x, dy=a.y-b.y; const d= Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle=`rgba(229,199,102,${(1-d/120)*.25})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } } }
+      requestAnimationFrame(step);
+    }
+    window.addEventListener('resize', resize); resize(); step();
   </script>
 </body>
 </html>
