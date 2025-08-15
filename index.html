@@ -1,706 +1,392 @@
-import React, { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import {
-  PlayCircle,
-  Calendar,
-  ArrowRight,
-  Music2,
-  Ticket,
-  ShoppingBag,
-  Mic2,
-  Users2,
-  Send,
-  ShieldCheck,
-  KeyRound,
-  Mail,
-  Phone,
-  Instagram,
-  Twitter,
-  Youtube,
-  Music,
-  Store,
-  LockKeyhole
-} from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Richh Nick — Official HQ</title>
+  <meta name="description" content="Richh Nick — Artist, Mogul, Visionary. Music, events, artists, merch, and movement — all in one place." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --gold: #C9A227; --goldSoft:#E5C766; --black:#0a0a0a; }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .gold-grad{ background-image: linear-gradient(135deg, #E8D38E, #C9A227 60%, #7A6414); }
+    .gold-text{ background: linear-gradient(90deg,#E5C766,#7A6414); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .card{ position:relative; border-radius: 1rem; padding:1.5px; background: linear-gradient(135deg, #E8D38E, #C9A227 60%, #7A6414); }
+    .card > .inner{ border-radius: 1rem; background:#0a0a0a; padding:1.5rem; height:100%; }
+  </style>
+</head>
+<body class="bg-black text-white selection:bg-yellow-300 selection:text-black">
+  <!-- Top Nav -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl gold-grad"></div>
+        <div class="font-extrabold tracking-wide">Richh Nick <span class="text-xs text-white/60 ml-2">Official HQ</span></div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+        <a href="#about" class="hover:text-white">About</a>
+        <a href="#music" class="hover:text-white">Music</a>
+        <a href="#events" class="hover:text-white">Events</a>
+        <a href="#artists" class="hover:text-white">Artists</a>
+        <a href="#members" class="hover:text-white">Members</a>
+        <a href="#merch" class="hover:text-white">Merch</a>
+        <a href="#booking" class="hover:text-white">Booking</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-white/10">☰</button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
+      <div class="px-4 py-3 grid grid-cols-2 gap-3 text-white/90 text-sm">
+        <a href="#about" class="rounded-lg bg-white/5 px-3 py-2">About</a>
+        <a href="#music" class="rounded-lg bg-white/5 px-3 py-2">Music</a>
+        <a href="#events" class="rounded-lg bg-white/5 px-3 py-2">Events</a>
+        <a href="#artists" class="rounded-lg bg-white/5 px-3 py-2">Artists</a>
+        <a href="#members" class="rounded-lg bg-white/5 px-3 py-2">Members</a>
+        <a href="#merch" class="rounded-lg bg-white/5 px-3 py-2">Merch</a>
+        <a href="#booking" class="rounded-lg bg-white/5 px-3 py-2">Booking</a>
+      </div>
+    </div>
+  </header>
 
-/**
- * RichhNick.org — Boss‑level, branded digital HQ (single‑file React)
- * Styling: TailwindCSS (no extra setup needed in this canvas). For your project,
- * ensure Tailwind is configured OR replace classes with your CSS.
- *
- * How to use:
- * 1) Drop this component in a Next.js or Vite + React project.
- * 2) Replace all placeholder media/links in the SITE config below.
- * 3) Hook forms to your provider (Formspree, Beehiiv, Mailchimp, Klaviyo, etc.).
- */
-
-const SITE = {
-  brand: {
-    name: "Richh Nick",
-    org: "Authentic Empire",
-    tagline: "Where Hustle Meets Legacy",
-    email: "richhnick3@gmail.com",
-  },
-  theme: {
-    gold: "#C9A227", // deep gold
-    goldSoft: "#E5C766",
-    black: "#0a0a0a",
-    white: "#ffffff",
-  },
-  hero: {
-    mediaUrl:
-      "https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=2000&auto=format&fit=crop", // replace with your photo/video poster
-    headline: "Richh Nick — Artist, Mogul, Visionary",
-    ctas: [
-      { label: "Listen Now", href: "#music", icon: PlayCircle },
-      { label: "Book Me", href: "#booking", icon: Mic2 },
-      { label: "Join the Movement", href: "#members", icon: Users2 },
-    ],
-  },
-  media: {
-    spotifyEmbed:
-      "https://open.spotify.com/embed/artist/3jOstUTkEu2JkjvRdBA5Gu?utm_source=generator", // swap with your artist/playlist embed
-    appleMusicEmbed:
-      "https://embed.music.apple.com/us/album/after-hours/1499378108", // swap
-    youtubeVideoId: "u9Mv98Gr5pY", // swap w/ your latest video id
-  },
-  socials: {
-    instagram: "https://instagram.com/", // your IG
-    twitter: "https://x.com/", // your X link
-    youtube: "https://youtube.com/", // your channel
-    tiktok: "https://tiktok.com/@yourhandle",
-  },
-  store: {
-    url: "https://yourshop.com", // Shopify/Printful storefront
-  },
-  artists: [
-    {
-      name: "Padd X",
-      blurb:
-        "Melodic drill energy with stadium hooks. From trenches to trendsetters.",
-      avatar:
-        "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200&auto=format&fit=crop",
-      links: { instagram: "#", youtube: "#", spotify: "#" },
-    },
-    {
-      name: "100K Loo",
-      blurb: "Raw cadence. Heavy bass. Certified crowd controller.",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
-      links: { instagram: "#", youtube: "#", spotify: "#" },
-    },
-    {
-      name: "BoldBoy",
-      blurb:
-        "Left‑field flows with luxury flare. High fashion, higher frequency.",
-      avatar:
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop",
-      links: { instagram: "#", youtube: "#", spotify: "#" },
-    },
-  ],
-  events: [
-    {
-      title: "Yacht Party — Biloxi Sound",
-      date: "2025-09-05",
-      time: "20:00",
-      venue: "Private Marina",
-      city: "Biloxi, MS",
-      link: "#",
-    },
-    {
-      title: "SXSW Takeover — Hosted by Richh Nick",
-      date: "2026-03-15",
-      time: "21:00",
-      venue: "6th Street",
-      city: "Austin, TX",
-      link: "#",
-    },
-  ],
-};
-
-// Utility: format date/time for display
-function fmtDate(dateStr) {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-// Utility: create ICS file data URI for Add to Calendar
-function makeICS({ title, date, time, venue, city }) {
-  try {
-    const start = new Date(`${date}T${time || "20:00"}:00`);
-    const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
-    const dt = (d) =>
-      d
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .replace(/\.\d{3}Z$/, "Z");
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//RichhNick.org//EN",
-      "CALSCALE:GREGORIAN",
-      "METHOD:PUBLISH",
-      "BEGIN:VEVENT",
-      `DTSTART:${dt(start)}`,
-      `DTEND:${dt(end)}`,
-      `SUMMARY:${title}`,
-      `LOCATION:${venue}, ${city}`,
-      "END:VEVENT",
-      "END:VCALENDAR",
-    ].join("\n");
-    return `data:text/calendar;charset=utf8,${encodeURIComponent(ics)}`;
-  } catch (e) {
-    return "#";
-  }
-}
-
-// Section wrapper
-const Section = ({ id, className = "", children }) => (
-  <section id={id} className={`relative py-20 ${className}`}>
-    {children}
+  <!-- Hero -->
+  <section id="hero" class="relative pt-12 pb-24">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=2000&auto=format&fit=crop');"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6">
+        <span>Where Hustle Meets Legacy</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Richh Nick — Artist, Mogul, Visionary</h1>
+      <p class="mt-5 text-white/80 max-w-2xl">Music. Events. Artists. Merch. Game‑changing moves — all in one place. Tap in for unreleased drops, early tickets, and the blueprint behind the hustle.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#music" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Listen Now</a>
+        <a href="#booking" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Book Me</a>
+        <a href="#members" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white/10 hover:bg-white/20">Join the Movement</a>
+      </div>
+    </div>
   </section>
-);
 
-// Fancy gradient border card
-const GoldCard = ({ children, className = "" }) => (
-  <div
-    className={`relative rounded-2xl p-[1.5px] bg-gradient-to-br from-[#E8D38E] via-[#C9A227] to-[#7A6414] ${className}`}
-  >
-    <div className="rounded-2xl bg-[#0a0a0a] p-6 h-full">{children}</div>
-  </div>
-);
-
-// Pill button
-const Button = ({ href, onClick, icon: Icon, children, className = "" }) => (
-  <a
-    href={href}
-    onClick={onClick}
-    className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 transition hover:scale-[1.02] ${className}`}
-  >
-    {Icon && <Icon className="h-5 w-5" />}
-    <span>{children}</span>
-  </a>
-);
-
-const Divider = () => (
-  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-);
-
-const Nav = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#E5C766] to-[#7A6414]" />
-          <div className="font-extrabold tracking-wide text-white">
-            {SITE.brand.name}
-            <span className="ml-2 text-xs font-medium text-white/60">
-              Official HQ
-            </span>
-          </div>
-        </div>
-        <nav className="hidden md:flex items-center gap-6 text-sm text-white/80">
-          <a href="#about" className="hover:text-white">About</a>
-          <a href="#music" className="hover:text-white">Music</a>
-          <a href="#events" className="hover:text-white">Events</a>
-          <a href="#artists" className="hover:text-white">Artists</a>
-          <a href="#members" className="hover:text-white">Members</a>
-          <a href="#merch" className="hover:text-white">Merch</a>
-          <a href="#booking" className="hover:text-white">Booking</a>
-        </nav>
-        <div className="md:hidden">
-          <button
-            onClick={() => setOpen((o) => !o)}
-            className="p-2 rounded-lg border border-white/10 text-white"
-          >
-            <span className="sr-only">Menu</span>☰
-          </button>
-        </div>
-      </div>
-      {open && (
-        <div className="md:hidden border-t border-white/10">
-          <div className="px-4 py-3 grid grid-cols-2 gap-3 text-white/90 text-sm">
-            {[
-              ["About", "#about"],
-              ["Music", "#music"],
-              ["Events", "#events"],
-              ["Artists", "#artists"],
-              ["Members", "#members"],
-              ["Merch", "#merch"],
-              ["Booking", "#booking"],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg bg-white/5 px-3 py-2"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
-  );
-};
-
-const Hero = () => {
-  return (
-    <Section id="hero" className="pt-10 pb-24">
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${SITE.hero.mediaUrl})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
-      </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6">
-            <ShieldCheck className="h-4 w-4" />
-            <span>The Official Plug for {SITE.brand.name} & {SITE.brand.org}</span>
-          </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight text-white">
-            {SITE.hero.headline}
-          </h1>
-          <p className="mt-5 text-white/80 max-w-2xl">
-            Music. Events. Artists. Merch. Game‑changing moves — all in one place.
-            Tap in for unreleased drops, early tickets, and the blueprint behind the hustle.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {SITE.hero.ctas.map((cta) => (
-              <Button
-                key={cta.label}
-                href={cta.href}
-                icon={cta.icon}
-                className="bg-gradient-to-r from-[#E5C766] to-[#7A6414] text-black hover:brightness-110"
-              >
-                {cta.label}
-              </Button>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </Section>
-  );
-};
-
-const About = () => (
-  <Section id="about" className="bg-black">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-white">
-      <div className="grid md:grid-cols-3 gap-10 items-center">
-        <div className="md:col-span-2">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">About</h2>
-          <p className="text-white/80 leading-relaxed">
-            Built from grit and vision. {SITE.brand.name} is more than an artist — he’s a
-            builder, a host, and an operator. From SXSW stages and viral moments to
-            leadership at {SITE.brand.org}, the mission stays the same: elevate the sound,
-            empower the culture, and turn hustle into legacy.
-          </p>
-          <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-white/80">
-            <li className="flex items-center gap-2"><Mic2 className="h-5 w-5"/> SXSW Host & Major Shows</li>
-            <li className="flex items-center gap-2"><Music2 className="h-5 w-5"/> Notable collabs & placements</li>
-            <li className="flex items-center gap-2"><Users2 className="h-5 w-5"/> Authentic Empire leadership</li>
-            <li className="flex items-center gap-2"><Store className="h-5 w-5"/> Brands, ventures & community</li>
+  <!-- About -->
+  <section id="about" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-10 items-center">
+        <div class="md:col-span-2">
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">About</h2>
+          <p class="text-white/80 leading-relaxed">Built from grit and vision. Richh Nick is more than an artist — he’s a builder, a host, and an operator. From SXSW stages and viral moments to leadership at Authentic Empire, the mission stays the same: elevate the sound, empower the culture, and turn hustle into legacy.</p>
+          <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-white/80 list-disc pl-5">
+            <li>SXSW Host & Major Shows</li>
+            <li>Notable collabs & placements</li>
+            <li>Authentic Empire leadership</li>
+            <li>Brands, ventures & community</li>
           </ul>
         </div>
-        <GoldCard className="md:col-span-1">
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">Taglines</h3>
-            <ul className="text-white/80 space-y-2 list-disc pl-5">
-              <li>Where Hustle Meets Legacy</li>
-              <li>The Official Plug for {SITE.brand.name} & {SITE.brand.org}</li>
-              <li>Your Front Row Seat to the Movement</li>
-            </ul>
-          </div>
-        </GoldCard>
+        <div class="card md:col-span-1"><div class="inner">
+          <h3 class="text-xl font-bold mb-2">Taglines</h3>
+          <ul class="text-white/80 space-y-2 list-disc pl-5">
+            <li>Where Hustle Meets Legacy</li>
+            <li>The Official Plug for Richh Nick & Authentic Empire</li>
+            <li>Your Front Row Seat to the Movement</li>
+          </ul>
+        </div></div>
       </div>
     </div>
-  </Section>
-);
+  </section>
 
-const MusicMedia = () => {
-  const ytSrc = useMemo(
-    () => `https://www.youtube.com/embed/${SITE.media.youtubeVideoId}`,
-    []
-  );
-  return (
-    <Section id="music" className="bg-[#0a0a0a] text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Music & Media</h2>
-          <div className="flex items-center gap-2 text-white/60 text-sm">
-            <Music className="h-5 w-5"/>
-            <span>Tune in & tap in</span>
+  <!-- Music & Media -->
+  <section id="music" class="py-20 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Music & Media</h2>
+        <span class="text-white/60 text-sm">Tune in & tap in</span>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="card"><div class="inner">
+          <h3 class="text-lg font-semibold mb-3">Spotify</h3>
+          <div class="aspect-video rounded-xl overflow-hidden">
+            <!-- TODO: Replace src with your Spotify artist/playlist embed link -->
+            <iframe title="Spotify" class="w-full h-full" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" src="https://open.spotify.com/embed/artist/3jOstUTkEu2JkjvRdBA5Gu?utm_source=generator"></iframe>
           </div>
-        </div>
-        <div className="grid lg:grid-cols-2 gap-10">
-          <GoldCard>
-            <h3 className="text-lg font-semibold text-white mb-3">Spotify</h3>
-            <div className="aspect-video rounded-xl overflow-hidden">
-              <iframe
-                title="Spotify Embed"
-                className="w-full h-full"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                src={SITE.media.spotifyEmbed}
-              />
-            </div>
-            <p className="text-xs text-white/60 mt-2">Replace with your artist/playlist embed link.</p>
-          </GoldCard>
-          <GoldCard>
-            <h3 className="text-lg font-semibold text-white mb-3">Apple Music</h3>
-            <div className="aspect-video rounded-xl overflow-hidden">
-              <iframe
-                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                frameBorder="0"
-                height="450"
-                style={{ width: "100%", overflow: "hidden", background: "transparent" }}
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src={SITE.media.appleMusicEmbed}
-                title="Apple Music"
-              />
-            </div>
-            <p className="text-xs text-white/60 mt-2">Replace with your album/artist embed link.</p>
-          </GoldCard>
-          <GoldCard className="lg:col-span-2">
-            <h3 className="text-lg font-semibold text-white mb-3">Latest Video</h3>
-            <div className="aspect-video rounded-xl overflow-hidden">
-              <iframe
-                className="w-full h-full"
-                src={ytSrc}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </GoldCard>
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const Events = () => (
-  <Section id="events" className="bg-black text-white">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold">Events</h2>
-        <Ticket className="h-6 w-6 text-white/60"/>
-      </div>
-      <div className="grid md:grid-cols-2 gap-6">
-        {SITE.events.map((ev) => (
-          <GoldCard key={`${ev.title}-${ev.date}`}>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-bold">{ev.title}</h3>
-                <p className="text-white/70 mt-1">
-                  {fmtDate(ev.date)} • {ev.time} • {ev.venue} — {ev.city}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  href={ev.link}
-                  className="bg-white text-black hover:opacity-90"
-                  icon={ArrowRight}
-                >
-                  Tickets / RSVP
-                </Button>
-                <Button
-                  href={makeICS(ev)}
-                  className="bg-gradient-to-r from-[#E5C766] to-[#7A6414] text-black"
-                  icon={Calendar}
-                >
-                  Add to Calendar
-                </Button>
-              </div>
-            </div>
-          </GoldCard>
-        ))}
+        </div></div>
+        <div class="card"><div class="inner">
+          <h3 class="text-lg font-semibold mb-3">Apple Music</h3>
+          <div class="aspect-video rounded-xl overflow-hidden">
+            <!-- TODO: Replace src with your Apple Music album/artist embed link -->
+            <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%; overflow:hidden; background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/after-hours/1499378108" title="Apple Music"></iframe>
+          </div>
+        </div></div>
+        <div class="card lg:col-span-2"><div class="inner">
+          <h3 class="text-lg font-semibold mb-3">Latest Video</h3>
+          <div class="aspect-video rounded-xl overflow-hidden">
+            <!-- TODO: Replace video id in URL with your latest video id -->
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/u9Mv98Gr5pY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div></div>
       </div>
     </div>
-  </Section>
-);
+  </section>
 
-const Artists = () => (
-  <Section id="artists" className="bg-[#0a0a0a] text-white">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold">Artist Management</h2>
-        <Users2 className="h-6 w-6 text-white/60"/>
+  <!-- Events -->
+  <section id="events" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Events</h2>
       </div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {SITE.artists.map((a) => (
-          <GoldCard key={a.name}>
-            <div className="space-y-4">
-              <img src={a.avatar} alt={a.name} className="w-full h-48 object-cover rounded-xl" />
-              <div>
-                <h3 className="text-xl font-bold">{a.name}</h3>
-                <p className="text-white/70 mt-1">{a.blurb}</p>
-              </div>
-              <div className="flex gap-3 text-sm">
-                <a href={a.links.instagram} className="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">IG</a>
-                <a href={a.links.youtube} className="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">YT</a>
-                <a href={a.links.spotify} className="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">SPOT</a>
-              </div>
-            </div>
-          </GoldCard>
-        ))}
-      </div>
-
-      <GoldCard className="mt-10">
-        <div className="grid lg:grid-cols-2 gap-6 items-center">
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Example Event Card 1: replace values -->
+        <div class="card"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-bold">Submit Your Music</h3>
-            <p className="text-white/70 mt-2">
-              Serious talent only. Drop your details — if it’s undeniable, we’ll be in touch.
-            </p>
+            <h3 class="text-xl font-bold">Yacht Party — Biloxi Sound</h3>
+            <p class="text-white/70 mt-1"><span class="ev-date">2025-09-05</span> • <span class="ev-time">20:00</span> • Private Marina — Biloxi, MS</p>
           </div>
-          <form
-            className="space-y-3"
-            action="https://formspree.io/f/your-id" // 👉 Replace with your form endpoint
-            method="POST"
-          >
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input name="name" required placeholder="Your Name" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-              <input name="email" required type="email" placeholder="Email" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input name="insta" placeholder="Instagram Link" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-              <input name="music" placeholder="Music Link (Spotify/Apple/YouTube)" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            </div>
-            <input type="text" name="epk" placeholder="EPK / Drive / One‑sheet" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            <textarea name="notes" rows={4} placeholder="Tell us why you stand out" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            <div className="flex justify-end">
-              <button className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">
-                <Send className="h-4 w-4"/> Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </GoldCard>
-    </div>
-  </Section>
-);
-
-const Members = () => {
-  const [email, setEmail] = useState("");
-  const [ok, setOk] = useState(false);
-  return (
-    <Section id="members" className="bg-black text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div class="flex gap-2">
+            <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
+            <a class="add-cal inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="Yacht Party — Biloxi Sound" data-date="2025-09-05" data-time="20:00" data-venue="Private Marina" data-city="Biloxi, MS" href="#">Add to Calendar</a>
+          </div>
+        </div></div>
+        <!-- Example Event Card 2 -->
+        <div class="card"><div class="inner flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold">Members Only</h2>
-            <p className="text-white/80 mt-3 max-w-xl">
-              Unlock unreleased music, first‑access tickets, private livestreams, and drops.
-              Join the inner circle.
-            </p>
-            <ul className="mt-6 space-y-2 text-white/80">
-              <li className="flex items-center gap-2"><LockKeyhole className="h-5 w-5"/> Exclusive vault content</li>
-              <li className="flex items-center gap-2"><Ticket className="h-5 w-5"/> Early access to shows & yacht parties</li>
-              <li className="flex items-center gap-2"><ShoppingBag className="h-5 w-5"/> Member‑only merch drops</li>
-            </ul>
+            <h3 class="text-xl font-bold">SXSW Takeover — Hosted by Richh Nick</h3>
+            <p class="text-white/70 mt-1"><span class="ev-date">2026-03-15</span> • <span class="ev-time">21:00</span> • 6th Street — Austin, TX</p>
           </div>
-          <GoldCard>
-            {!ok ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // 👉 Hook this to Beehiiv/Mailchimp/Klaviyo API or a serverless endpoint
-                  setOk(true);
-                }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3">
-                  <KeyRound className="h-5 w-5 text-white/70"/>
-                  <h3 className="text-xl font-bold">Get Your Key</h3>
-                </div>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email address"
-                  className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm"
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone (optional for SMS)"
-                  className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm"
-                />
-                <button className="w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-[#E5C766] to-[#7A6414] text-black">
-                  Join the Movement <ArrowRight className="h-4 w-4"/>
-                </button>
-                <p className="text-xs text-white/50">
-                  By joining, you agree to receive updates by email/SMS. Unsubscribe anytime.
-                </p>
-              </form>
-            ) : (
-              <div className="text-center space-y-2">
-                <h3 className="text-xl font-bold">You're in ✨</h3>
-                <p className="text-white/70">
-                  Check your inbox for confirmation. Keep an eye out for your first drop.
-                </p>
-              </div>
-            )}
-          </GoldCard>
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const Merch = () => (
-  <Section id="merch" className="bg-[#0a0a0a] text-white">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold">Merch & Drops</h2>
-        <ShoppingBag className="h-6 w-6 text-white/60"/>
-      </div>
-      <GoldCard>
-        <div className="flex flex-col md:flex-row md:items-center gap-6">
-          <div className="flex-1">
-            <p className="text-white/80">
-              Cop official gear and limited releases. Integrated with Shopify/Printful for
-              smooth checkout.
-            </p>
+          <div class="flex gap-2">
+            <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Tickets / RSVP</a>
+            <a class="add-cal inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black" data-title="SXSW Takeover — Hosted by Richh Nick" data-date="2026-03-15" data-time="21:00" data-venue="6th Street" data-city="Austin, TX" href="#">Add to Calendar</a>
           </div>
-          <Button
-            href={SITE.store.url}
-            className="bg-white text-black hover:opacity-90"
-            icon={ShoppingBag}
-          >
-            Visit the Store
-          </Button>
-        </div>
-      </GoldCard>
-    </div>
-  </Section>
-);
-
-const Booking = () => (
-  <Section id="booking" className="bg-black text-white">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-10">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold">Contact / Booking</h2>
-          <p className="text-white/80 mt-3 max-w-xl">
-            For shows, features, hosting or speaking: tap the form or email
-            <span className="font-semibold"> {SITE.brand.email}</span>.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm">
-            <a className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href={`mailto:${SITE.brand.email}`}>
-              <Mail className="h-4 w-4"/> {SITE.brand.email}
-            </a>
-            <a className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href={SITE.socials.instagram}>
-              <Instagram className="h-4 w-4"/> Instagram
-            </a>
-            <a className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href={SITE.socials.twitter}>
-              <Twitter className="h-4 w-4"/> X
-            </a>
-            <a className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href={SITE.socials.youtube}>
-              <Youtube className="h-4 w-4"/> YouTube
-            </a>
-          </div>
-        </div>
-        <GoldCard>
-          <form
-            className="space-y-3"
-            action="https://formspree.io/f/your-id" // 👉 Replace with your provider
-            method="POST"
-          >
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input name="name" required placeholder="Full Name" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-              <input name="email" required type="email" placeholder="Email" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input name="phone" placeholder="Phone" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-              <select name="type" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm">
-                <option>Show Booking</option>
-                <option>Feature / Verse</option>
-                <option>Hosting</option>
-                <option>Speaking</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input name="date" type="date" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-              <input name="budget" placeholder="Budget (USD)" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            </div>
-            <textarea name="details" rows={4} placeholder="Event details, links, notes" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
-            <div className="flex justify-end">
-              <button className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-[#E5C766] to-[#7A6414] text-black">
-                Submit Inquiry <Send className="h-4 w-4"/>
-              </button>
-            </div>
-          </form>
-        </GoldCard>
+        </div></div>
       </div>
     </div>
-  </Section>
-);
+  </section>
 
-const Footer = () => (
-  <footer className="bg-black text-white border-t border-white/10">
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+  <!-- Artists -->
+  <section id="artists" class="py-20 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Artist Management</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Artist 1 -->
+        <div class="card"><div class="inner space-y-4">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200&auto=format&fit=crop" alt="Padd X" class="w-full h-48 object-cover rounded-xl" />
+          <div>
+            <h3 class="text-xl font-bold">Padd X</h3>
+            <p class="text-white/70 mt-1">Melodic drill energy with stadium hooks. From trenches to trendsetters.</p>
+          </div>
+          <div class="flex gap-3 text-sm">
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">IG</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">YT</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">SPOT</a>
+          </div>
+        </div></div>
+        <!-- Artist 2 -->
+        <div class="card"><div class="inner space-y-4">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop" alt="100K Loo" class="w-full h-48 object-cover rounded-xl" />
+          <div>
+            <h3 class="text-xl font-bold">100K Loo</h3>
+            <p class="text-white/70 mt-1">Raw cadence. Heavy bass. Certified crowd controller.</p>
+          </div>
+          <div class="flex gap-3 text-sm">
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">IG</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">YT</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">SPOT</a>
+          </div>
+        </div></div>
+        <!-- Artist 3 -->
+        <div class="card"><div class="inner space-y-4">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="BoldBoy" class="w-full h-48 object-cover rounded-xl" />
+          <div>
+            <h3 class="text-xl font-bold">BoldBoy</h3>
+            <p class="text-white/70 mt-1">Left‑field flows with luxury flare. High fashion, higher frequency.</p>
+          </div>
+          <div class="flex gap-3 text-sm">
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">IG</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">YT</a>
+            <a href="#" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20">SPOT</a>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card mt-10"><div class="inner grid lg:grid-cols-2 gap-6 items-center">
         <div>
-          <div className="text-lg font-extrabold">{SITE.brand.name}</div>
-          <div className="text-white/60 text-sm">© {new Date().getFullYear()} All rights reserved.</div>
+          <h3 class="text-2xl font-bold">Submit Your Music</h3>
+          <p class="text-white/70 mt-2">Serious talent only. Drop your details — if it’s undeniable, we’ll be in touch.</p>
         </div>
-        <div className="flex flex-wrap gap-3 text-sm">
-          <a href="#about" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">About</a>
-          <a href="#music" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Music</a>
-          <a href="#events" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Events</a>
-          <a href="#artists" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Artists</a>
-          <a href="#members" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Members</a>
-          <a href="#merch" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Merch</a>
-          <a href="#booking" className="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Booking</a>
+        <form class="space-y-3" action="https://formspree.io/f/your-id" method="POST">
+          <!-- TODO: Replace action with your Formspree/Mailchimp endpoint -->
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="name" required placeholder="Your Name" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+            <input name="email" required type="email" placeholder="Email" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="insta" placeholder="Instagram Link" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+            <input name="music" placeholder="Music Link (Spotify/Apple/YouTube)" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+          </div>
+          <input type="text" name="epk" placeholder="EPK / Drive / One‑sheet" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+          <textarea name="notes" rows="4" placeholder="Tell us why you stand out" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"></textarea>
+          <div class="flex justify-end">
+            <button class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Submit</button>
+          </div>
+        </form>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- Members Only -->
+  <section id="members" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold">Members Only</h2>
+        <p class="text-white/80 mt-3 max-w-xl">Unlock unreleased music, first‑access tickets, private livestreams, and drops. Join the inner circle.</p>
+        <ul class="mt-6 space-y-2 text-white/80 list-disc pl-5">
+          <li>Exclusive vault content</li>
+          <li>Early access to shows & yacht parties</li>
+          <li>Member‑only merch drops</li>
+        </ul>
+      </div>
+      <div class="card"><div class="inner">
+        <form class="space-y-4" action="https://formspree.io/f/your-id" method="POST">
+          <!-- TODO: Replace with your email/SMS provider; Formspree free tier works to start. -->
+          <h3 class="text-xl font-bold">Get Your Key</h3>
+          <input type="email" required name="email" placeholder="Email address" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm" />
+          <input type="tel" name="phone" placeholder="Phone (optional for SMS)" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm" />
+          <button class="w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black">Join the Movement</button>
+          <p class="text-xs text-white/50">By joining, you agree to receive updates by email/SMS. Unsubscribe anytime.</p>
+        </form>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- Merch -->
+  <section id="merch" class="py-20 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Merch & Drops</h2>
+      </div>
+      <div class="card"><div class="inner flex flex-col md:flex-row md:items-center gap-6">
+        <div class="flex-1">
+          <p class="text-white/80">Cop official gear and limited releases. Integrated with Shopify/Printful for smooth checkout.</p>
         </div>
+        <!-- TODO: Replace # with your store URL -->
+        <a href="#" class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-white text-black hover:opacity-90">Visit the Store</a>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold">Contact / Booking</h2>
+        <p class="text-white/80 mt-3 max-w-xl">For shows, features, hosting or speaking: tap the form or email <span class="font-semibold">richhnick3@gmail.com</span>.</p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm">
+          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="mailto:richhnick3@gmail.com">richhnick3@gmail.com</a>
+          <!-- TODO: Replace with your real socials -->
+          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">Instagram</a>
+          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">X</a>
+          <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10" href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="card"><div class="inner">
+        <form class="space-y-3" action="https://formspree.io/f/your-id" method="POST">
+          <!-- TODO: Replace action with your provider endpoint -->
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="name" required placeholder="Full Name" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+            <input name="email" required type="email" placeholder="Email" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="phone" placeholder="Phone" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+            <select name="type" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm">
+              <option>Show Booking</option>
+              <option>Feature / Verse</option>
+              <option>Hosting</option>
+              <option>Speaking</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input name="date" type="date" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+            <input name="budget" placeholder="Budget (USD)" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"/>
+          </div>
+          <textarea name="details" rows="4" placeholder="Event details, links, notes" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-sm"></textarea>
+          <div class="flex justify-end">
+            <button class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black">Submit Inquiry</button>
+          </div>
+        </form>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <div class="text-lg font-extrabold">Richh Nick</div>
+        <div class="text-white/60 text-sm">© <span id="year"></span> All rights reserved.</div>
+      </div>
+      <div class="flex flex-wrap gap-3 text-sm">
+        <a href="#about" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">About</a>
+        <a href="#music" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Music</a>
+        <a href="#events" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Events</a>
+        <a href="#artists" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Artists</a>
+        <a href="#members" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Members</a>
+        <a href="#merch" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Merch</a>
+        <a href="#booking" class="px-3 py-2 rounded-full bg-white/5 hover:bg-white/10">Booking</a>
       </div>
     </div>
   </footer>
-);
 
-export default function RichhNickSite() {
-  return (
-    <div className="min-h-screen bg-black text-white selection:bg-[#E5C766] selection:text-black">
-      <div
-        className="pointer-events-none fixed inset-0 -z-10 opacity-20"
-        style={{
-          background:
-            "radial-gradient(1000px 500px at 10% -10%, #E5C76622, transparent 60%), radial-gradient(800px 400px at 90% -10%, #7A641422, transparent 60%)",
-        }}
-      />
-      <Nav />
-      <Hero />
-      <About />
-      <Divider />
-      <MusicMedia />
-      <Divider />
-      <Events />
-      <Divider />
-      <Artists />
-      <Divider />
-      <Members />
-      <Divider />
-      <Merch />
-      <Divider />
-      <Booking />
-      <Footer />
-    </div>
-  );
-}
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      const m = document.getElementById('mobileMenu');
+      m.classList.toggle('hidden');
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // "Add to Calendar" (ICS data URI) for each event link with .add-cal
+    function toICSDate(dt){
+      // dt is Date
+      return dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+    }
+
+    function buildICS({title, date, time, venue, city}){
+      try{
+        const start = new Date(`${date}T${time || '20:00'}:00`);
+        const end = new Date(start.getTime() + 2*60*60*1000);
+        const ics = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//RichhNick.org//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `DTSTART:${toICSDate(start)}`,
+          `DTEND:${toICSDate(end)}`,
+          `SUMMARY:${title}`,
+          `LOCATION:${venue}, ${city}`,
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\n');
+        return 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+      }catch(e){ return '#'; }
+    }
+
+    document.querySelectorAll('.add-cal').forEach(a => {
+      const data = {
+        title: a.getAttribute('data-title'),
+        date: a.getAttribute('data-date'),
+        time: a.getAttribute('data-time'),
+        venue: a.getAttribute('data-venue'),
+        city: a.getAttribute('data-city'),
+      };
+      a.setAttribute('href', buildICS(data));
+    });
+  </script>
+</body>
+</html>
