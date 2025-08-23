@@ -95,7 +95,8 @@
     #totop.show{ opacity:1; transform: translateY(0); }
 
     /* Hero video fallback */
-    .hero-video{ position:absolute; inset:0; object-fit:cover; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
+    /* Hero video fallback */
+    .hero-video{ position:absolute; inset:0; object-fit:cover; object-position: center top; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
   </style>
 </head>
 <body class="bg-black text-white selection:bg-yellow-300 selection:text-black">
@@ -142,7 +143,11 @@
 
   <!-- Hero -->
   <section id="hero" class="relative pt-16 pb-28 overflow-hidden">
-    <img class="hero-video" src="./images/richhnickportraitwithtana.jpg" alt="Richh Nick Business Consultant" />
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="./images/richhnick-hero-video.mp4" type="video/mp4">
+      <!-- Fallback image if video doesn't load -->
+      <img src="./images/richhnickportraitwithtana.jpg" alt="Richh Nick Business Consultant" class="hero-video" />
+    </video>
     <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6 reveal">
