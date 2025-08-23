@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="richh-2040">
+<head>
+  <title>Richh Nick — Entrepreneur, Consultant & Social Media Specialist</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Richh Nick — Entrepreneur, Consultant & Social Media Specialist. Expert credit repair, business funding, Turo car rentals, live music reviews, and viral content creation. Transform your financial future today." />
+  <meta name="keywords" content="credit repair, business funding, Turo rentals, content creation, live music reviews, business mentorship, financial freedom, entrepreneurship" />
+  <meta name="author" content="Richh Nick" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://richhnicklanding2.netlify.app/" />
+  <meta property="og:title" content="Richh Nick — Entrepreneur, Consultant & Social Media Specialist" />
+  <meta property="og:description" content="Credit Repair • Business Funding • Turo Rentals • Live Music Reviews • Viral Content Creation — Your one-stop for business success." />
+  <meta property="og:image" content="https://richhnicklanding2.netlify.app/images/richhnicklogo.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://richhnicklanding2.netlify.app/" />
+  <meta property="twitter:title" content="Richh Nick — Entrepreneur, Consultant & Social Media Specialist" />
+  <meta property="twitter:description" content="Credit Repair • Business Funding • Turo Rentals • Live Music Reviews • Viral Content Creation — Your one-stop for business success." />
+  <meta property="twitter:image" content="https://richhnicklanding2.netlify.app/images/richhnicklogo.jpg" />
+  
+  <!-- Theme & Icons -->
+  <meta name="theme-color" content="#C9A227" />
+  <meta name="msapplication-TileColor" content="#C9A227" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Richh Nick" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Orbitron:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Orbitron:wght@500;700&display=swap"></noscript>
+  
+  <!-- Tailwind CSS with fallback -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Fallback if Tailwind fails to load
+    if (typeof tailwind === 'undefined') {
+      document.head.innerHTML += '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css">';
+    }
+    
+    // Register Service Worker for better performance
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+    
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      // Core Web Vitals
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.name === 'LCP') {
+              console.log('LCP:', entry.startTime);
+            }
+            if (entry.name === 'FID') {
+              console.log('FID:', entry.processingStart - entry.startTime);
+            }
+            if (entry.name === 'CLS') {
+              console.log('CLS:', entry.value);
+            }
+          }
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+      }
+    });
+  </script>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Richh Nick",
+    "jobTitle": "Entrepreneur, Consultant & Social Media Specialist",
+    "description": "Expert in credit repair, business funding, Turo car rentals, live music reviews, and viral content creation.",
+    "url": "https://richhnicklanding2.netlify.app/",
+    "image": "https://richhnicklanding2.netlify.app/images/richhnicklogo.jpg",
+    "sameAs": [
+      "https://instagram.com/richhnick",
+      "https://facebook.com/richhnick",
+      "https://youtube.com/@richhnick8894"
+    ],
+    "knowsAbout": [
+      "Credit Repair",
+      "Business Funding", 
+      "Turo Car Rentals",
+      "Content Creation",
+      "Live Music Reviews",
+      "Business Mentorship"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Business Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Credit Repair Services"
+          }
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Funding Assistance"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service", 
+            "name": "Turo Car Rental Business Setup"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Content Creation & Social Media Strategy"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Live Music Reviews & Artist Promotion"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Mentorship & Strategy"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <link rel="icon" type="image/svg+xml"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='58%25' font-family='Arial' font-size='34' font-weight='700' text-anchor='middle' fill='%23C9A227'%3ERN%3C/text%3E%3C/svg%3E">
+
+  <style>
+    /* ======= 2040 Design System ======= */
+    :root{
+      --gold: #C9A227; /* deep gold */
+      --goldSoft:#E5C766;
+      --goldDark:#7A6414;
+      --black:#0a0a0a;
+      --ink:#0f1115;
+      --glass:#101318cc; /* translucent */
+      --ring: 0 0 0 1px rgba(255,255,255,.08) inset;
+    }
+    html,body{ height:100%; }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#000; }
+
+    /* Aurora / Nebula background */
+    .bg-aurora{ position:fixed; inset:0; z-index:-3; pointer-events:none; background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(229,199,102,.20), transparent 60%),
+      radial-gradient(900px 450px at 90% -10%, rgba(122,100,20,.18), transparent 60%),
+      radial-gradient(900px 450px at 50% 120%, rgba(201,162,39,.20), transparent 60%),
+      #050507;
+      filter:saturate(1.1);
+    }
+    /* Subtle scanlines + noise for texture */
+    .bg-noise{ position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.07; background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 1px, transparent 1px, transparent 3px); mix-blend: overlay; }
+
+    /* Cyber grid overlay */
+    .bg-grid{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.08; background-image: linear-gradient(to right, rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.15) 1px, transparent 1px); background-size: 60px 60px; }
+
+    /* Gold gradient utilities */
+    .text-gold-gradient{ background: linear-gradient(to right, var(--goldSoft), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .border-gold-gradient{ border-image: linear-gradient(to right, var(--goldSoft), var(--gold)) 1; }
+
+    /* Reveal animations */
+    .reveal{ opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.revealed{ opacity: 1; transform: translateY(0); }
+
+    /* Card styles */
+    .card{ background: rgba(15,17,21,0.6); border-radius: 16px; box-shadow: var(--ring), 0 4px 30px rgba(0,0,0,0.1); backdrop-filter: blur(5px); padding: 24px; transition: all 0.3s; }
+    .card .inner{ transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    /* Cursor ring */
+    .ring{ position: fixed; width: 30px; height: 30px; border: 1px solid rgba(255,255,255,0.3); border-radius: 100%; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: all 0.15s ease-out; left: -100px; top: -100px; }
+    .ring.cursor-down{ width: 25px; height: 25px; border-color: var(--gold); }
+
+    /* Progress bar */
+    #progress{ position: fixed; top: 0; left: 0; height: 1px; background: linear-gradient(to right, var(--goldSoft), var(--gold)); z-index: 1000; }
+    #progress-bar{ height: 100%; width: 0; background: linear-gradient(to right, var(--goldSoft), var(--gold)); transition: width 0.1s; }
+
+    /* Section dividers */
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); }
+
+    /* Scroll-to-top */
+    #totop{ position:fixed; right:18px; bottom:20px; z-index:30; opacity:0; transform: translateY(10px); transition: all .3s; }
+    #totop.show{ opacity:1; transform: translateY(0); }
+
+    /* Hero video fallback */
+    .hero-video{ position:absolute; inset:0; object-fit:cover; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
+
+    /* Enhanced animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(201, 162, 39, 0.6); }
+    }
+    
+    .float-animation { animation: float 6s ease-in-out infinite; }
+    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    
+    /* Enhanced card hover effects */
+    .card:hover { transform: translateY(-5px); box-shadow: var(--ring), 0 20px 40px rgba(0,0,0,0.3); }
+    
+    /* Magnetic button effect */
+    .mag { transition: transform 0.2s ease-out; }
+    
+    /* Tilt effect for cards */
+    .tilt { transition: transform 0.1s ease; transform-style: preserve-3d; }
+    
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .card { padding: 16px; }
+      .bg-aurora { background-size: 100% 100%; }
+      .bg-grid { background-size: 40px 40px; }
+    }
+    
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .card:hover { transform: none; }
+      .tilt { transform: none !important; }
+    }
+    
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root { --gold: #FFD700; --goldSoft: #FFE55C; }
+    }
+    
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .card, .mag, .tilt { transition: none; }
+      .float-animation, .pulse-glow { animation: none; }
+    }
+    
+    /* Print styles */
+    @media print {
+      .bg-aurora, .bg-noise, .bg-grid, .ring, #progress, #totop { display: none; }
+      body { background: white; color: black; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+    }
+    .tilt:hover { transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02); }
+    
+    /* Social media hover effects */
+    .social-link { transition: all 0.3s ease; }
+    .social-link:hover { transform: translateY(-3px) scale(1.1); }
+    
+    /* Service card enhancements */
+    .service-card { position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.1), transparent); transition: left 0.5s; }
+    .service-card:hover::before { left: 100%; }
+    
+    /* Fixed tilt effect - entire card moves */
+    .tilt { transition: transform 0.1s ease; transform-style: preserve-3d; }
+    .tilt:hover { transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02); }
+  </style>
+</head>
+<body class="bg-black text-white selection:bg-yellow-300 selection:text-black min-h-screen flex flex-col">
+  <!-- Background systems -->
+  <div class="bg-aurora"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-grid"></div>
+  <canvas id="constellation" class="fixed inset-0 -z-[1] opacity-30"></canvas>
+  <div id="progress"></div>
+  <div class="ring" id="ring"></div>
+
+  <!-- Floating ambience orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-yellow-400/10 blur-3xl -top-[250px] -right-[250px] animate-pulse float-animation"></div>
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-yellow-400/5 blur-3xl bottom-[10%] left-[5%] animate-pulse float-animation" style="animation-delay: 1s;"></div>
+  </div>
+
+  <!-- Top navigation -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-black/60 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center gap-8">
+          <a href="#" class="flex items-center gap-3">
+            <img src="images/richhnicklogo.jpg" alt="Richh Nick Logo" class="w-10 h-10 rounded-lg" />
+            <span class="text-xl font-bold text-gold-gradient">Richh Nick</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="#about" class="text-sm text-white/70 hover:text-yellow-400 transition-colors">About</a>
+            <a href="#services" class="text-sm text-white/70 hover:text-yellow-400 transition-colors">Services</a>
+            <a href="#social" class="text-sm text-white/70 hover:text-yellow-400 transition-colors">Social Media</a>
+            <a href="#contact" class="text-sm text-white/70 hover:text-yellow-400 transition-colors">Contact</a>
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://www.instagram.com/richhnick" target="_blank" class="text-white/70 hover:text-yellow-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+            </svg>
+          </a>
+          <button id="menuBtn" class="md:hidden text-white/70 hover:text-yellow-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobileMenu" class="fixed inset-0 z-30 bg-black/95 backdrop-blur-md hidden">
+    <div class="flex flex-col h-full p-6">
+      <div class="flex justify-end">
+        <button class="text-white/70 hover:text-yellow-400 transition-colors" onclick="document.getElementById('mobileMenu').classList.add('hidden')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6 items-center justify-center flex-grow">
+        <a href="#about" class="text-lg text-white/70 hover:text-yellow-400 transition-colors">About</a>
+        <a href="#services" class="text-lg text-white/70 hover:text-yellow-400 transition-colors">Services</a>
+        <a href="#social" class="text-lg text-white/70 hover:text-yellow-400 transition-colors">Social Media</a>
+        <a href="#contact" class="text-lg text-white/70 hover:text-yellow-400 transition-colors">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero section -->
+  <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black z-10"></div>
+    <!-- Richh Nick's inspiration video -->
+    <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="images/richhinspirationvideo" type="video/mp4">
+      <!-- Fallback to logo if video doesn't load -->
+      <div class="hero-video bg-gradient-to-br from-yellow-400/20 via-black to-black" style="background-image: url('images/richhnicklogo.jpg'); background-size: cover; background-position: center;"></div>
+    </video>
+    <div class="relative z-20 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gold-gradient">Richh Nick</h1>
+      <p class="text-xl md:text-3xl text-white/80 mb-4">Entrepreneur • Consultant • Social Media Specialist</p>
+      <p class="text-lg md:text-xl text-white/60 mb-8 max-w-3xl mx-auto">Building multiple income streams and helping others achieve financial freedom through credit repair, business funding, Turo rentals, and viral content creation.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#services" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 pulse-glow">
+          Explore My Services
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </a>
+        <a href="#social" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold bg-white/10 text-white hover:bg-white/20">
+          Follow My Journey
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About section -->
+  <section id="about" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gold-gradient">About Richh Nick</h2>
+        <div class="divider max-w-xs mx-auto mb-6"></div>
+        <p class="text-white/70 max-w-3xl mx-auto text-lg">Entrepreneur, consultant, and social media specialist helping clients achieve financial freedom through multiple streams of income and viral content creation.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <!-- Richh Nick's portrait -->
+          <img src="images/richhnickportraitwithtana.jpg" alt="Richh Nick - Entrepreneur & Consultant" class="rounded-xl w-full h-auto object-cover shadow-2xl" />
+        </div>
+        <div class="space-y-6 reveal">
+          <h3 class="text-3xl font-bold">My Journey</h3>
+          <p class="text-white/70 text-lg">From building multiple income streams to helping others achieve financial freedom, I've dedicated my career to mastering entrepreneurship and sharing that knowledge through engaging social media content.</p>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Credit Repair Specialist</strong> - Helping clients rebuild their financial foundation and improve credit scores</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Business Funding Expert</strong> - Securing capital for entrepreneurs and small business owners</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Turo Car Rental Entrepreneur</strong> - Building passive income streams through vehicle rentals</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Social Media Content Creator</strong> - Creating viral content that educates and entertains</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Live Music Reviewer</strong> - Supporting artists and building community through music</span>
+            </div>
+          </div>
+          
+          <div class="pt-4">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Work With Me
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services section -->
+  <section id="services" class="py-20 bg-gradient-to-b from-black to-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gold-gradient">My Services</h2>
+        <div class="divider max-w-xs mx-auto mb-6"></div>
+        <p class="text-white/70 max-w-3xl mx-auto text-lg">Comprehensive solutions for financial freedom, business growth, and digital presence. Each service is designed to help you build wealth and achieve your goals.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Credit Repair -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Credit Repair</h3>
+          </div>
+          
+          <!-- Richh Nick's credit repair image -->
+          <div class="mb-6">
+            <img src="images/creditrepair1" alt="Richh Nick's Credit Repair Services" class="w-full h-32 object-cover object-center rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Credit report analysis & dispute resolution</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Professional dispute letters & negotiations</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Credit building strategies & maintenance</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Get Started
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          </div>
+        </div></div>
+        
+        <!-- Business Funding -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Business Funding</h3>
+          </div>
+          
+          <!-- Richh Nick's business funding image -->
+          <div class="mb-6">
+            <img src="images/richhfunding" alt="Richh Nick's Business Funding Services" class="w-full h-32 object-cover object-center rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Business credit building & establishment</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Funding strategy & application assistance</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Small business loans & grants</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors">
+              Learn More
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          </div>
+        </div></div>
+        
+        <!-- Turo Rentals -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Turo Car Rentals</h3>
+          </div>
+          
+          <!-- Richh Nick's rental car business image -->
+          <div class="mb-6">
+            <img src="images/richhrentalcarbusiness.jpg" alt="Richh Nick's Turo Car Rental Business" class="w-full h-32 object-cover object-center rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Passive income through vehicle rentals</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Fleet management & optimization</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Business setup & scaling strategies</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors">
+              Get Started
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          </div>
+        </div></div>
+        
+        <!-- Content Creation -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Content Creation</h3>
+      </div>
+      
+          <!-- Richh Nick's content creation image -->
+          <div class="mb-6">
+            <img src="images/richhcontent" alt="Richh Nick's Content Creation Services" class="w-full h-32 object-cover object-top rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Viral social media content</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Brand strategy & audience growth</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Content coaching & mentorship</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </a>
+      </div>
+        </div></div>
+        
+        <!-- Live Music Reviews -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 18V5l12-2v13M9 18c0 .552.45 1 1.007 1h7.986c.557 0 1.007-.448 1.007-1M9 18c0 .552-.45 1-1.007 1H2.007c-.557 0-1.007-.448-1.007-1" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Live Music Reviews</h3>
+      </div>
+      
+          <!-- Richh Nick's music reviews photo -->
+          <div class="mb-6">
+            <img src="images/richhmusicreviews.jpg" alt="Richh Nick's Live Music Reviews" class="w-full h-32 object-cover object-center rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Live social media music reviews</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Artist exposure & promotion</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Music industry networking</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors">
+              Submit Music
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+          </div>
+        </div></div>
+        
+        <!-- Business Mentorship -->
+        <div class="card reveal tilt service-card"><div class="inner">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Business Mentorship</h3>
+            </div>
+          
+          <!-- Richh Nick's business mentorship image -->
+          <div class="mb-6">
+            <img src="images/richhmentorship" alt="Richh Nick's Business Mentorship Services" class="w-full h-32 object-cover object-top rounded-lg shadow-lg" />
+          </div>
+          
+          <ul class="space-y-3 text-white/70 mb-6">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>One-on-one strategy sessions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Business growth & scaling plans</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Problem-solving & obstacle removal</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Book Session
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Creation Showcase section -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gold-gradient">Content Creation Showcase</h2>
+        <div class="divider max-w-xs mx-auto mb-6"></div>
+        <p class="text-white/70 max-w-3xl mx-auto text-lg">See Richh Nick's content creation skills in action. From viral social media content to brand strategy, he creates engaging content that drives results.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+                      <div class="relative">
+              <video class="w-full rounded-xl shadow-2xl" autoplay muted loop playsinline controls>
+                <source src="images/richhcontentservives" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl pointer-events-none"></div>
+            </div>
+        </div>
+        
+        <div class="space-y-6 reveal">
+          <h3 class="text-3xl font-bold">Creating Viral Content That Converts</h3>
+          <p class="text-white/70 text-lg">Richh Nick specializes in creating engaging, shareable content that builds brands and drives business growth. His content has helped numerous entrepreneurs and businesses increase their online presence and reach.</p>
+          
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Social Media Strategy</strong> - Platform-specific content optimization</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Viral Content Creation</strong> - Engaging videos and posts that spread</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Brand Development</strong> - Consistent messaging and visual identity</span>
+                </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+              <span><strong>Audience Growth</strong> - Strategies to build engaged followings</span>
+              </div>
+            </div>
+          
+          <div class="pt-4">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Get Content Creation Help
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media section -->
+  <section id="social" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gold-gradient">Follow My Journey</h2>
+        <div class="divider max-w-xs mx-auto mb-6"></div>
+        <p class="text-white/70 max-w-3xl mx-auto text-lg">Join me on social media for daily insights, business tips, credit repair advice, and live music reviews. Let's build a community of entrepreneurs and music lovers.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <!-- Instagram -->
+        <div class="card reveal tilt text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-10 h-10 text-white">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+            </svg>
+              </div>
+          <h3 class="text-xl font-bold mb-4">@richhnick</h3>
+          <p class="text-white/70 mb-6">Daily business insights, credit repair tips, and behind-the-scenes of building multiple income streams.</p>
+          <a href="https://www.instagram.com/richhnick" target="_blank" class="mag social-link inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:brightness-110 transition-all">
+            Follow on Instagram
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+            </div>
+        
+        <!-- Facebook -->
+        <div class="card reveal tilt text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-10 h-10 text-white">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Nick Burks</h3>
+          <p class="text-white/70 mb-6">Connect with me on Facebook for business networking, community updates, and exclusive content.</p>
+          <a href="https://www.facebook.com/nick.burks.3" target="_blank" class="mag social-link inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:brightness-110 transition-all">
+            Connect on Facebook
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+        </div>
+        
+        <!-- YouTube -->
+        <div class="card reveal tilt text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-10 h-10 text-white">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">@richhnick8894</h3>
+          <p class="text-white/70 mb-6">Live music reviews, business tutorials, and in-depth discussions about entrepreneurship and financial freedom.</p>
+          <a href="https://www.youtube.com/@richhnick8894" target="_blank" class="mag social-link inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-gradient-to-r from-red-600 to-red-700 text-white hover:brightness-110 transition-all">
+            Subscribe on YouTube
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Live Music Reviews Highlight -->
+      <div class="card reveal">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <!-- Richh Nick's actual music reviews photo -->
+            <img src="images/richhmusicreviews.jpg" alt="Richh Nick's Live Music Reviews" class="rounded-xl w-full h-auto object-cover shadow-2xl" />
+          </div>
+          <div class="space-y-6">
+            <h3 class="text-3xl font-bold">Live Music Reviews</h3>
+            <p class="text-white/70 text-lg">Every Friday at 8:00 PM EST, I go live on social media to review music submissions from independent artists. Get honest feedback, exposure to new audiences, and connect with the music community.</p>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+                <span><strong>Free Exposure</strong> - Reach thousands of potential fans</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+                <span><strong>Honest Feedback</strong> - Professional insights to improve your craft</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">✓</span>
+                <span><strong>Community Building</strong> - Connect with other artists and industry professionals</span>
+            </div>
+          </div>
+          
+          <div class="pt-4">
+              <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Submit Your Music
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-[#0a0a0a] to-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gold-gradient">Let's Work Together</h2>
+        <div class="divider max-w-xs mx-auto mb-6"></div>
+        <p class="text-white/70 max-w-3xl mx-auto text-lg">Ready to take your business to the next level? Whether you need credit repair, business funding, content creation, or want to submit music for review, I'm here to help.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="card reveal">
+          <h3 class="text-2xl font-bold mb-6">Get Started Today</h3>
+          <p class="text-white/70 mb-6">Fill out the form and I'll get back to you within 24 hours to discuss how we can work together to achieve your goals.</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-yellow-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-2">Free Consultation</h4>
+                <p class="text-white/70 text-sm">15-minute call to discuss your needs and see if we're a good fit to work together.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-yellow-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+          </div>
+              <div>
+                <h4 class="font-semibold mb-2">Content Creation</h4>
+                <p class="text-white/70 text-sm">Viral social media content, brand strategy, and audience growth coaching.</p>
+        </div>
+      </div>
+            
+            <div class="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-yellow-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 18V5l12-2v13M9 18c0 .552.45 1 1.007 1h7.986c.557 0 1.007-.448 1.007-1M9 18c0 .552-.45 1-1.007 1H2.007c-.557 0-1.007-.448-1.007-1" />
+                </svg>
+    </div>
+              <div>
+                <h4 class="font-semibold mb-2">Music Submissions</h4>
+                <p class="text-white/70 text-sm">Submit your music for live review and get exposure to thousands of potential fans.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card reveal">
+          <h3 class="text-2xl font-bold mb-6">Contact Form</h3>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Full Name</label>
+              <input type="text" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-colors" placeholder="Enter your full name" required>
+      </div>
+      
+            <div>
+              <label class="block text-sm font-medium mb-2">Email Address</label>
+              <input type="email" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-colors" placeholder="Enter your email" required>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium mb-2">Service Interest</label>
+              <select class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors" required>
+                <option value="">Select a service</option>
+                <option value="credit">Credit Repair</option>
+                <option value="funding">Business Funding</option>
+                <option value="turo">Turo Car Rentals</option>
+                <option value="content">Content Creation</option>
+                <option value="music">Music Review</option>
+                <option value="mentorship">Business Mentorship</option>
+                <option value="other">Other</option>
+              </select>
+          </div>
+            
+            <div>
+              <label class="block text-sm font-medium mb-2">Message</label>
+              <textarea rows="4" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-colors" placeholder="Tell me about your goals and what you'd like to achieve" required></textarea>
+          </div>
+            
+            <button type="submit" class="w-full mag inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-lg font-semibold bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110 transition-all">
+              Send Message
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </button>
+          </form>
+            </div>
+          </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/richhnicklogo.jpg" alt="Richh Nick Logo" class="w-12 h-12 rounded-lg" />
+            <h3 class="text-xl font-bold text-gold-gradient">Richh Nick</h3>
+          </div>
+          <p class="text-white/70 mb-6">Entrepreneur, consultant, and social media specialist helping clients achieve financial freedom through multiple streams of income and viral content creation.</p>
+          <div class="flex space-x-4">
+            <a href="https://www.instagram.com/richhnick" target="_blank" class="text-white/50 hover:text-yellow-400 transition-colors social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/nick.burks.3" target="_blank" class="text-white/50 hover:text-yellow-400 transition-colors social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@richhnick8894" target="_blank" class="text-white/50 hover:text-yellow-400 transition-colors social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-white/70">
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Credit Repair</a></li>
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Business Funding</a></li>
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Turo Rentals</a></li>
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Content Creation</a></li>
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Music Reviews</a></li>
+          </ul>
+          </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-white/70">
+            <li><a href="#contact" class="hover:text-yellow-400 transition-colors">Book Consultation</a></li>
+            <li><a href="mailto:richh@richhnick.com" class="hover:text-yellow-400 transition-colors">richh@richhnick.com</a></li>
+            <li><a href="#social" class="hover:text-yellow-400 transition-colors">Social Media</a></li>
+          </ul>
+            </div>
+          </div>
+      
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-white/50">
+        <p>&copy; 2024 Richh Nick. All rights reserved. | Building Financial Freedom Through Multiple Income Streams</p>
+          </div>
+      </div>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <button id="totop" class="fixed right-6 bottom-6 z-50 w-12 h-12 bg-yellow-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400/30 transition-all opacity-0 invisible">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Intersection Observer for reveal animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // Scroll to top functionality
+    const totopBtn = document.getElementById('totop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        totopBtn.classList.remove('opacity-0', 'invisible');
+        totopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        totopBtn.classList.add('opacity-0', 'invisible');
+        totopBtn.classList.remove('opacity-100', 'visible');
+      }
+    });
+
+    totopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Progress bar
+    const progressBar = document.getElementById('progress');
+    const progressBarInner = document.createElement('div');
+    progressBarInner.id = 'progress-bar';
+    progressBar.appendChild(progressBarInner);
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBarInner.style.width = scrollPercent + '%';
+    });
+
+    // Custom cursor ring
+    const ring = document.getElementById('ring');
+    
+    document.addEventListener('mousemove', (e) => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+      ring.classList.add('cursor-down');
+    });
+
+    document.addEventListener('mouseup', () => {
+      ring.classList.remove('cursor-down');
+    });
+
+    // Constellation background animation
+    const canvas = document.getElementById('constellation');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const stars = [];
+    const connections = [];
+    
+    // Create stars
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.5
+      });
+    }
+    
+    // Create connections
+    for (let i = 0; i < 50; i++) {
+      connections.push({
+        from: Math.floor(Math.random() * stars.length),
+        to: Math.floor(Math.random() * stars.length)
+      });
+    }
+    
+    function animateConstellation() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw stars
+      stars.forEach(star => {
+        ctx.fillStyle = 'rgba(201, 162, 39, 0.8)';
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Move stars
+        star.y += star.speed;
+        if (star.y > canvas.height) star.y = 0;
+      });
+      
+      // Draw connections
+      ctx.strokeStyle = 'rgba(201, 162, 39, 0.3)';
+      ctx.lineWidth = 0.5;
+      connections.forEach(conn => {
+        const from = stars[conn.from];
+        const to = stars[conn.to];
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x, to.y);
+        ctx.stroke();
+      });
+      
+      requestAnimationFrame(animateConstellation);
+    }
+    
+    animateConstellation();
+    
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Add tilt effect to cards
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Calculate tilt based on cursor position relative to card center
+        // Fix: Cards should tilt towards the cursor, not away from it
+        const rotateX = (centerY - y) / 15; // Vertical tilt - cursor up = card tilts up
+        const rotateY = (x - centerX) / 15; // Horizontal tilt - cursor right = card tilts right
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+
+    // Add magnetic effect to buttons
+    document.querySelectorAll('.mag').forEach(button => {
+      button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    // Form submission handling
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const name = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const service = this.querySelector('select').value;
+      const message = this.querySelector('textarea').value;
+      
+      // Here you would typically send this data to your backend
+      // For now, we'll just show a success message
+      alert(`Thank you ${name}! I'll get back to you within 24 hours about your ${service} inquiry.`);
+      
+      // Reset form
+      this.reset();
+    });
+
+    // Add loading animation to page
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "Richh Nick - Entrepreneur & Consultant",
+  "short_name": "Richh Nick",
+  "description": "Expert credit repair, business funding, Turo car rentals, live music reviews, and viral content creation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#C9A227",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/richhnicklogo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/richhnicklogo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "finance", "education"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
