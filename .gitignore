@@ -1,6 +1,6 @@
 # Large video files
-*.mp4
-*.mov
+# *.mp4  (commented out to allow hero video)
+# *.mov  (commented out to allow hero video)
 *.avi
 *.mkv
 *.wmv
