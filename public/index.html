@@ -97,340 +97,360 @@
 
     /* Hero video fallback */
     /* Hero video fallback */
-    .hero-video{ position:absolute; inset:0; object-fit:cover; object-position: center top; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
-  </style>
-</head>
-<body class="bg-black text-white selection:bg-yellow-300 selection:text-black">
-  <!-- Background systems -->
-  <div class="bg-aurora"></div>
-  <div class="bg-noise"></div>
-  <div class="bg-grid"></div>
-  <canvas id="constellation" class="fixed inset-0 -z-[1] opacity-30"></canvas>
-  <div id="progress"></div>
-  <div class="ring" id="ring"></div>
+    <style>
+      .eq span{ display:inline-block; width:2px; height:8px; background:currentColor; margin:0 1px; animation:eq 1.5s ease-in-out infinite; }
+      .eq span:nth-child(2){ animation-delay:.1s; }
+      .eq span:nth-child(3){ animation-delay:.2s; }
+      @keyframes eq{ 0%,100%{height:8px} 50%{height:16px} }
+      .hero-video{ position:absolute; inset:0; object-fit:cover; object-position: center top; width:100%; height:100%; filter: saturate(1.1) contrast(1.05) brightness(.95); }
+      .logo-bg {
+        background-image: url('/images/richhnicklogo.jpg');
+        background-size: 150px 150px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.03;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        pointer-events: none;
+      }
+    </style>
+    </head>
+    <body class="bg-black text-white selection:bg-yellow-300 selection:text-black">
+      <!-- Background systems -->
+      <div class="logo-bg"></div>
+      <div class="bg-aurora"></div>
+      <div class="bg-noise"></div>
+      <div class="bg-grid"></div>
+      <canvas id="constellation" class="fixed inset-0 -z-[1] opacity-30"></canvas>
+      <div id="progress"></div>
+      <div class="ring" id="ring"></div>
 
-  <!-- Floating ambience orbs -->
-  <div class="orb w-72 h-72 gold-grad rounded-full -z-[1]" style="top:10%; left:-4%"></div>
-  <div class="orb w-96 h-96 gold-grad rounded-full -z-[1]" style="bottom:-10%; right:-6%"></div>
+      <!-- Floating ambience orbs -->
+      <div class="orb w-72 h-72 gold-grad rounded-full -z-[1]" style="top:10%; left:-4%"></div>
+      <div class="orb w-96 h-96 gold-grad rounded-full -z-[1]" style="bottom:-10%; right:-6%"></div>
 
-  <!-- Top Nav -->
-  <header class="sticky top-0 z-40 bg-black/40 backdrop-blur-xl border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <img src="/images/richhnicklogo.jpg" alt="Richh Nick Logo" class="h-9 w-9 rounded-xl shadow-lg object-cover" />
-        <div class="font-extrabold tracking-wide">Richh Nick <span class="text-xs text-white/60 ml-2">Business Consultant</span></div>
-      </div>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
-        <a href="#about" class="hover:text-white">About</a>
-        <a href="#credit-repair" class="hover:text-white">Credit Repair</a>
-        <a href="#business-funding" class="hover:text-white">Business Funding</a>
-        <a href="#turo-rentals" class="hover:text-white">Turo Rentals</a>
-        <a href="#music-reviews" class="hover:text-white">Music Reviews</a>
-        <a href="#contact" class="hover:text-white">Contact</a>
-      </nav>
-      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-white/10">☰</button>
-    </div>
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
-      <div class="px-4 py-3 grid grid-cols-2 gap-3 text-white/90 text-sm">
-        <a href="#about" class="rounded-lg bg-white/5 px-3 py-2">About</a>
-        <a href="#credit-repair" class="rounded-lg bg-white/5 px-3 py-2">Credit Repair</a>
-        <a href="#business-funding" class="rounded-lg bg-white/5 px-3 py-2">Business Funding</a>
-        <a href="#turo-rentals" class="rounded-lg bg-white/5 px-3 py-2">Turo Rentals</a>
-        <a href="#music-reviews" class="rounded-lg bg-white/5 px-3 py-2">Music Reviews</a>
-        <a href="#contact" class="rounded-lg bg-white/5 px-3 py-2">Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="hero" class="relative pt-16 pb-40 overflow-hidden min-h-screen">
-    <video class="hero-video" autoplay muted loop playsinline style="z-index: 1;">
-      <source src="/images/richhnick-hero-video.mp4" type="video/mp4">
-      <!-- Fallback image if video doesn't load -->
-      <img src="./images/richhnickportraitwithtana.jpg" alt="Richh Nick Business Consultant" class="hero-video" />
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" style="z-index: 2;"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative" style="z-index: 3;">
-      <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6 reveal">
-        <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span>Where Business Meets Success</span>
-      </div>
-      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight reveal"><span class="gold-text">Richh Nick</span> — Business Consultant & Entrepreneur</h1>
-      <p class="mt-5 text-white/80 max-w-2xl reveal">Transform your financial future with expert credit repair, business funding solutions, profitable Turo car rentals, and professional music reviews. Your success is my mission.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#credit-repair" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Fix Your Credit</a>
-        <a href="#business-funding" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Get Funding</a>
-        <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white/10 hover:bg-white/20">Free Consultation</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-10 items-center">
-        <div class="md:col-span-2 reveal">
-          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">About Richh Nick</h2>
-          <p class="text-white/80 leading-relaxed">From entertainment industry success to business consulting excellence. Richh Nick combines real-world experience with proven strategies to help clients achieve financial freedom through credit repair, business funding, profitable car rentals, and strategic business development.</p>
-          <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-white/80 list-disc pl-5">
-            <li>Certified Credit Repair Specialist</li>
-            <li>Business Funding Expert</li>
-            <li>Turo Rental Success Coach</li>
-            <li>Music Industry Professional</li>
-          </ul>
+      <!-- Top Nav -->
+      <header class="sticky top-0 z-40 bg-black/40 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <img src="/images/richhnicklogo.jpg" alt="Richh Nick Logo" class="h-9 w-9 rounded-xl shadow-lg object-cover" />
+            <div class="font-extrabold tracking-wide">Richh Nick <span class="text-xs text-white/60 ml-2">Business Consultant</span></div>
+          </div>
+          <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+            <a href="#about" class="hover:text-white">About</a>
+            <a href="#credit-repair" class="hover:text-white">Credit Repair</a>
+            <a href="#business-funding" class="hover:text-white">Business Funding</a>
+            <a href="#turo-rentals" class="hover:text-white">Turo Rentals</a>
+            <a href="#music-reviews" class="hover:text-white">Music Reviews</a>
+            <a href="#contact" class="hover:text-white">Contact</a>
+          </nav>
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-white/10">☰</button>
         </div>
-        <div class="card md:col-span-1 tilt reveal"><div class="inner">
-          <h3 class="text-xl font-bold mb-2">Our Mission</h3>
-          <ul class="text-white/80 space-y-2 list-disc pl-5">
-            <li>Transform Financial Futures</li>
-            <li>Build Generational Wealth</li>
-            <li>Create Multiple Income Streams</li>
-            <li>Empower Entrepreneurs</li>
-          </ul>
-        </div></div>
-      </div>
-    </div>
-    <div class="divider mt-16"></div>
-  </section>
-
-  <!-- Credit Repair -->
-  <section id="credit-repair" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Credit Repair Services</h2>
-        <span class="text-white/60 text-sm reveal">Fix Your Score, Change Your Life</span>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div class="card reveal tilt"><div class="inner">
-          <h3 class="text-lg font-semibold mb-3">What We Offer</h3>
-          <ul class="text-white/80 space-y-3 list-disc pl-5">
-            <li>Complete Credit Analysis & Report Review</li>
-            <li>Dispute Inaccurate Items & Negative Marks</li>
-            <li>Credit Building Strategies & Education</li>
-            <li>Personalized Action Plans</li>
-            <li>Ongoing Support & Monitoring</li>
-          </ul>
-        </div></div>
-        <div class="card reveal tilt"><div class="inner">
-          <h3 class="text-lg font-semibold mb-3">Results You Can Expect</h3>
-          <ul class="text-white/80 space-y-3 list-disc pl-5">
-            <li>100-200+ Point Credit Score Increases</li>
-            <li>Removal of Negative Items</li>
-            <li>Qualification for Better Loans & Rates</li>
-            <li>Increased Credit Limits</li>
-            <li>Financial Peace of Mind</li>
-          </ul>
-        </div></div>
-      </div>
-      <div class="mt-8 text-center">
-        <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Start Your Credit Repair Journey</a>
-      </div>
-    </div>
-    <div class="divider mt-16"></div>
-  </section>
-
-  <!-- Business Funding -->
-  <section id="business-funding" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Business Funding Solutions</h2>
-        <span class="text-white/60 text-sm reveal">Fuel Your Business Dreams</span>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card reveal tilt"><div class="inner space-y-4">
-          <h3 class="text-xl font-bold">SBA Loans</h3>
-          <p class="text-white/70">Government-backed loans with favorable terms for qualified businesses.</p>
-          <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
-            <li>Up to $5M funding</li>
-            <li>Low interest rates</li>
-            <li>Flexible terms</li>
-          </ul>
-        </div></div>
-        <div class="card reveal tilt"><div class="inner space-y-4">
-          <h3 class="text-xl font-bold">Business Credit Lines</h3>
-          <p class="text-white/70">Revolving credit for ongoing business expenses and opportunities.</p>
-          <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
-            <li>$10K - $500K limits</li>
-            <li>No collateral required</li>
-            <li>Build business credit</li>
-          </ul>
-        </div></div>
-        <div class="card reveal tilt"><div class="inner space-y-4">
-          <h3 class="text-xl font-bold">Equipment Financing</h3>
-          <p class="text-white/70">Specialized funding for business equipment and machinery purchases.</p>
-          <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
-            <li>100% financing available</li>
-            <li>Equipment as collateral</li>
-            <li>Tax advantages</li>
-          </ul>
-        </div></div>
-      </div>
-      <div class="mt-8 text-center">
-        <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Get Your Funding Quote</a>
-      </div>
-    </div>
-    <div class="divider mt-16"></div>
-  </section>
-
-  <!-- Turo Rentals -->
-  <section id="turo-rentals" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Turo Car Rental Business</h2>
-        <span class="text-white/60 text-sm reveal">Turn Cars Into Cash</span>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-        <div class="reveal">
-          <h3 class="text-2xl font-bold mb-4">Build Your Rental Empire</h3>
-          <p class="text-white/80 leading-relaxed mb-6">Learn how to create a profitable car rental business using Turo. From vehicle selection to optimization strategies, I'll show you how to generate passive income with cars.</p>
-          <ul class="text-white/80 space-y-3 list-disc pl-5">
-            <li>Vehicle Selection & Acquisition Strategies</li>
-            <li>Pricing Optimization for Maximum Profit</li>
-            <li>Insurance & Risk Management</li>
-            <li>Fleet Management & Scaling</li>
-            <li>Customer Service Excellence</li>
-          </ul>
-          <div class="mt-6">
-            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Start Your Turo Business</a>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
+          <div class="px-4 py-3 grid grid-cols-2 gap-3 text-white/90 text-sm">
+            <a href="#about" class="rounded-lg bg-white/5 px-3 py-2">About</a>
+            <a href="#credit-repair" class="rounded-lg bg-white/5 px-3 py-2">Credit Repair</a>
+            <a href="#business-funding" class="rounded-lg bg-white/5 px-3 py-2">Business Funding</a>
+            <a href="#turo-rentals" class="rounded-lg bg-white/5 px-3 py-2">Turo Rentals</a>
+            <a href="#music-reviews" class="rounded-lg bg-white/5 px-3 py-2">Music Reviews</a>
+            <a href="#contact" class="rounded-lg bg-white/5 px-3 py-2">Contact</a>
           </div>
         </div>
-        <div class="card reveal tilt"><div class="inner">
-          <img src="./images/richhrentalcarbusiness.jpg" alt="Turo Car Rental Business" class="w-full h-64 object-cover rounded-xl mb-4" />
-          <h4 class="text-lg font-semibold mb-2">Success Story</h4>
-          <p class="text-white/70 text-sm">"From one car to a fleet of 15 vehicles generating $8,000+ monthly passive income. The strategies work when you follow the system."</p>
-        </div></div>
-      </div>
-    </div>
-    <div class="divider mt-16"></div>
-  </section>
+      </header>
 
-  <!-- Music Reviews -->
-  <section id="music-reviews" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Professional Music Reviews</h2>
-        <span class="text-white/60 text-sm reveal">Honest, Professional Feedback</span>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-        <div class="card reveal tilt"><div class="inner">
-          <img src="./images/richhmusicreviews.jpg" alt="Music Review Services" class="w-full h-64 object-cover rounded-xl mb-4" />
-          <h4 class="text-lg font-semibold mb-2">Industry Experience</h4>
-          <p class="text-white/70 text-sm">With years in the music industry and connections throughout the business, get professional reviews that matter.</p>
-        </div></div>
-        <div class="reveal">
-          <h3 class="text-2xl font-bold mb-4">Get Professional Music Feedback</h3>
-          <p class="text-white/80 leading-relaxed mb-6">Whether you're an emerging artist or established musician, get honest, constructive feedback on your music from someone with real industry experience.</p>
-          <ul class="text-white/80 space-y-3 list-disc pl-5">
-            <li>Detailed Song Analysis & Feedback</li>
-            <li>Production Quality Assessment</li>
-            <li>Market Potential Evaluation</li>
-            <li>Industry Connections & Networking</li>
-            <li>Career Development Advice</li>
-          </ul>
-          <div class="mt-6">
-            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Submit Your Music</a>
+      <!-- Hero -->
+      <section id="hero" class="relative pt-16 pb-40 overflow-hidden min-h-screen">
+        <video class="hero-video" autoplay muted loop playsinline style="z-index: 1;">
+          <source src="/images/richhnick-hero-video.mp4" type="video/mp4">
+          <!-- Fallback image if video doesn't load -->
+          <img src="./images/richhnickportraitwithtana.jpg" alt="Richh Nick Business Consultant" class="hero-video" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" style="z-index: 2;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative" style="z-index: 3;">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15 mb-6 reveal">
+            <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>Where Business Meets Success</span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight reveal"><span class="gold-text">Richh Nick</span> — Business Consultant & Entrepreneur</h1>
+          <p class="mt-5 text-white/80 max-w-2xl reveal">Transform your financial future with expert credit repair, business funding solutions, profitable Turo car rentals, and professional music reviews. Your success is my mission.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#credit-repair" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Fix Your Credit</a>
+            <a href="#business-funding" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Get Funding</a>
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white/10 hover:bg-white/20">Free Consultation</a>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="divider mt-16"></div>
-  </section>
+      </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-24">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold reveal">Ready to Transform Your Future?</h2>
-        <p class="mt-4 text-white/80 reveal">Get started with a free consultation. Let's discuss your goals and create a plan for success.</p>
-      </div>
-      <div class="card reveal"><div class="inner">
-        <form class="space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-white/80 mb-2">Full Name</label>
-              <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your full name" required>
+      <!-- About -->
+      <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid md:grid-cols-3 gap-10 items-center">
+            <div class="md:col-span-2 reveal">
+              <h2 class="text-3xl md:text-4xl font-extrabold mb-4">About Richh Nick</h2>
+              <p class="text-white/80 leading-relaxed">From entertainment industry success to business consulting excellence. Richh Nick combines real-world experience with proven strategies to help clients achieve financial freedom through credit repair, business funding, profitable car rentals, and strategic business development.</p>
+              <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-white/80 list-disc pl-5">
+                <li>Certified Credit Repair Specialist</li>
+                <li>Business Funding Expert</li>
+                <li>Turo Rental Success Coach</li>
+                <li>Music Industry Professional</li>
+              </ul>
             </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email Address</label>
-              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="your@email.com" required>
+            <div class="card md:col-span-1 tilt reveal"><div class="inner">
+              <h3 class="text-xl font-bold mb-2">Our Mission</h3>
+              <ul class="text-white/80 space-y-2 list-disc pl-5">
+                <li>Transform Financial Futures</li>
+                <li>Build Generational Wealth</li>
+                <li>Create Multiple Income Streams</li>
+                <li>Empower Entrepreneurs</li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+        <div class="divider mt-16"></div>
+      </section>
+
+      <!-- Credit Repair -->
+      <section id="credit-repair" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold reveal">Credit Repair Services</h2>
+            <span class="text-white/60 text-sm reveal">Fix Your Score, Change Your Life</span>
+          </div>
+          <div class="grid lg:grid-cols-2 gap-10">
+            <div class="card reveal tilt"><div class="inner">
+              <h3 class="text-lg font-semibold mb-3">What We Offer</h3>
+              <ul class="text-white/80 space-y-3 list-disc pl-5">
+                <li>Complete Credit Analysis & Report Review</li>
+                <li>Dispute Inaccurate Items & Negative Marks</li>
+                <li>Credit Building Strategies & Education</li>
+                <li>Personalized Action Plans</li>
+                <li>Ongoing Support & Monitoring</li>
+              </ul>
+            </div></div>
+            <div class="card reveal tilt"><div class="inner">
+              <h3 class="text-lg font-semibold mb-3">Results You Can Expect</h3>
+              <ul class="text-white/80 space-y-3 list-disc pl-5">
+                <li>100-200+ Point Credit Score Increases</li>
+                <li>Removal of Negative Items</li>
+                <li>Qualification for Better Loans & Rates</li>
+                <li>Increased Credit Limits</li>
+                <li>Financial Peace of Mind</li>
+              </ul>
+            </div></div>
+          </div>
+          <div class="mt-8 text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Start Your Credit Repair Journey</a>
+          </div>
+        </div>
+        <div class="divider mt-16"></div>
+      </section>
+
+      <!-- Business Funding -->
+      <section id="business-funding" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold reveal">Business Funding Solutions</h2>
+            <span class="text-white/60 text-sm reveal">Fuel Your Business Dreams</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card reveal tilt"><div class="inner space-y-4">
+              <h3 class="text-xl font-bold">SBA Loans</h3>
+              <p class="text-white/70">Government-backed loans with favorable terms for qualified businesses.</p>
+              <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
+                <li>Up to $5M funding</li>
+                <li>Low interest rates</li>
+                <li>Flexible terms</li>
+              </ul>
+            </div></div>
+            <div class="card reveal tilt"><div class="inner space-y-4">
+              <h3 class="text-xl font-bold">Business Credit Lines</h3>
+              <p class="text-white/70">Revolving credit for ongoing business expenses and opportunities.</p>
+              <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
+                <li>$10K - $500K limits</li>
+                <li>No collateral required</li>
+                <li>Build business credit</li>
+              </ul>
+            </div></div>
+            <div class="card reveal tilt"><div class="inner space-y-4">
+              <h3 class="text-xl font-bold">Equipment Financing</h3>
+              <p class="text-white/70">Specialized funding for business equipment and machinery purchases.</p>
+              <ul class="text-white/80 text-sm space-y-1 list-disc pl-5">
+                <li>100% financing available</li>
+                <li>Equipment as collateral</li>
+                <li>Tax advantages</li>
+              </ul>
+            </div></div>
+          </div>
+          <div class="mt-8 text-center">
+            <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Get Your Funding Quote</a>
+          </div>
+        </div>
+        <div class="divider mt-16"></div>
+      </section>
+
+      <!-- Turo Rentals -->
+      <section id="turo-rentals" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold reveal">Turo Car Rental Business</h2>
+            <span class="text-white/60 text-sm reveal">Turn Cars Into Cash</span>
+          </div>
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="reveal">
+              <h3 class="text-2xl font-bold mb-4">Build Your Rental Empire</h3>
+              <p class="text-white/80 leading-relaxed mb-6">Learn how to create a profitable car rental business using Turo. From vehicle selection to optimization strategies, I'll show you how to generate passive income with cars.</p>
+              <ul class="text-white/80 space-y-3 list-disc pl-5">
+                <li>Vehicle Selection & Acquisition Strategies</li>
+                <li>Pricing Optimization for Maximum Profit</li>
+                <li>Insurance & Risk Management</li>
+                <li>Fleet Management & Scaling</li>
+                <li>Customer Service Excellence</li>
+              </ul>
+              <div class="mt-6">
+                <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Start Your Turo Business</a>
+              </div>
+            </div>
+            <div class="card reveal tilt"><div class="inner">
+              <img src="./images/richhrentalcarbusiness.jpg" alt="Turo Car Rental Business" class="w-full h-64 object-cover rounded-xl mb-4" />
+              <h4 class="text-lg font-semibold mb-2">Success Story</h4>
+              <p class="text-white/70 text-sm">"From one car to a fleet of 15 vehicles generating $8,000+ monthly passive income. The strategies work when you follow the system."</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="divider mt-16"></div>
+      </section>
+
+      <!-- Music Reviews -->
+      <section id="music-reviews" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold reveal">Professional Music Reviews</h2>
+            <span class="text-white/60 text-sm reveal">Honest, Professional Feedback</span>
+          </div>
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="card reveal tilt"><div class="inner">
+              <img src="./images/richhmusicreviews.jpg" alt="Music Review Services" class="w-full h-64 object-cover rounded-xl mb-4" />
+              <h4 class="text-lg font-semibold mb-2">Industry Experience</h4>
+              <p class="text-white/70 text-sm">With years in the music industry and connections throughout the business, get professional reviews that matter.</p>
+            </div></div>
+            <div class="reveal">
+              <h3 class="text-2xl font-bold mb-4">Get Professional Music Feedback</h3>
+              <p class="text-white/80 leading-relaxed mb-6">Whether you're an emerging artist or established musician, get honest, constructive feedback on your music from someone with real industry experience.</p>
+              <ul class="text-white/80 space-y-3 list-disc pl-5">
+                <li>Detailed Song Analysis & Feedback</li>
+                <li>Production Quality Assessment</li>
+                <li>Market Potential Evaluation</li>
+                <li>Industry Connections & Networking</li>
+                <li>Career Development Advice</li>
+              </ul>
+              <div class="mt-6">
+                <a href="#contact" class="mag inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold shadow-lg ring-1 ring-white/10 bg-white text-black hover:opacity-90">Submit Your Music</a>
+              </div>
             </div>
           </div>
-          <div>
-            <label for="phone" class="block text-sm font-medium text-white/80 mb-2">Phone Number</label>
-            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="(555) 123-4567">
-          </div>
-          <div>
-            <label for="service" class="block text-sm font-medium text-white/80 mb-2">Service Interest</label>
-            <select id="service" name="service" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
-              <option value="">Select a service...</option>
-              <option value="credit-repair">Credit Repair</option>
-              <option value="business-funding">Business Funding</option>
-              <option value="turo-rentals">Turo Car Rentals</option>
-              <option value="music-reviews">Music Reviews</option>
-              <option value="consultation">General Consultation</option>
-            </select>
-          </div>
-          <div>
-            <label for="message" class="block text-sm font-medium text-white/80 mb-2">Message</label>
-            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tell us about your goals and how we can help..."></textarea>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Send Message</button>
-          </div>
-        </form>
-      </div></div>
-      
-      <!-- Social Links -->
-      <div class="mt-12 text-center">
-        <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
-        <div class="flex justify-center gap-4">
-          <a href="https://instagram.com/richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">Instagram</a>
-          <a href="https://facebook.com/richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">Facebook</a>
-          <a href="https://youtube.com/@richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">YouTube</a>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="divider mt-16"></div>
+      </section>
 
-  <!-- Footer -->
-  <footer class="py-12 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <div class="h-8 w-8 rounded-lg gold-grad shadow-lg"></div>
-        <div class="font-bold">Richh Nick</div>
-      </div>
-      <p class="text-white/60 text-sm">© 2024 Richh Nick Business Consulting. All rights reserved.</p>
-      <p class="text-white/40 text-xs mt-2">Transform your financial future with proven strategies and expert guidance.</p>
-    </div>
-  </footer>
+      <!-- Contact -->
+      <section id="contact" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold reveal">Ready to Transform Your Future?</h2>
+            <p class="mt-4 text-white/80 reveal">Get started with a free consultation. Let's discuss your goals and create a plan for success.</p>
+          </div>
+          <div class="card reveal"><div class="inner">
+            <form class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-white/80 mb-2">Full Name</label>
+                  <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your full name" required>
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email Address</label>
+                  <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="your@email.com" required>
+                </div>
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-white/80 mb-2">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="(555) 123-4567">
+              </div>
+              <div>
+                <label for="service" class="block text-sm font-medium text-white/80 mb-2">Service Interest</label>
+                <select id="service" name="service" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                  <option value="">Select a service...</option>
+                  <option value="credit-repair">Credit Repair</option>
+                  <option value="business-funding">Business Funding</option>
+                  <option value="turo-rentals">Turo Car Rentals</option>
+                  <option value="music-reviews">Music Reviews</option>
+                  <option value="consultation">General Consultation</option>
+                </select>
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-white/80 mb-2">Message</label>
+                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tell us about your goals and how we can help..."></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="mag inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold shadow-lg ring-1 ring-white/10 bg-gradient-to-r from-yellow-300 to-yellow-600 text-black hover:brightness-110">Send Message</button>
+              </div>
+            </form>
+          </div></div>
+          
+          <!-- Social Links -->
+          <div class="mt-12 text-center">
+            <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
+            <div class="flex justify-center gap-4">
+              <a href="https://instagram.com/richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">Instagram</a>
+              <a href="https://facebook.com/richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">Facebook</a>
+              <a href="https://youtube.com/@richhnick" target="_blank" class="mag inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <script>
-    // Reveal animations
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(reveal => observer.observe(reveal));
+      <!-- Footer -->
+      <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="h-8 w-8 rounded-lg gold-grad shadow-lg"></div>
+            <div class="font-bold">Richh Nick</div>
+          </div>
+          <p class="text-white/60 text-sm">© 2024 Richh Nick Business Consulting. All rights reserved.</p>
+          <p class="text-white/40 text-xs mt-2">Transform your financial future with proven strategies and expert guidance.</p>
+        </div>
+      </footer>
 
-    // Mobile menu toggle
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
+      <script>
+        // Reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+            }
+          });
+        }, { threshold: 0.1 });
+        reveals.forEach(reveal => observer.observe(reveal));
 
-    // Scroll to top
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', () => {
+          document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Scroll to top
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        });
+      </script>
+    </body>
+    </html>
